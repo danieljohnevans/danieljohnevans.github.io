@@ -76,7 +76,7 @@
 /* Fonts from Google Fonts (Allerta and Crimson Text) */
 
 body .navbar-inverse {
-  background-color: transparent;
+  background: transparent;
   border: none;
 }
 
@@ -85,11 +85,11 @@ body .navbar-brand {
 }
 
 body .navbar-inverse .navbar-nav .active a {
-  font-weight: 700;
+  font-weight: 1000;
   color: #EEC856;
   background: transparent;
-  border-bottom: 4px solid #EEC856;
-  text-shadow: none;
+  border-bottom: 2px solid #666666;
+  text-shadow: 500;
 }
 
 body {
@@ -117,4 +117,12 @@ img {
 
 ul {
   padding: 10px;
+}
+
+.fa {
+  color: #333333;
+}
+
+a {
+  color: #999999;
 }

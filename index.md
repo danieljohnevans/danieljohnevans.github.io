@@ -27,7 +27,10 @@ tagline:
                 </p>
                 <p>
                     I graduated from the College of the Holy Cross and since then have worked on a farm in Central Massachusetts, a mountain in Colorado, and as a community organizer. I'm currently based out of Somerville, MA.
-                </p>  
+                </p>
+                <p>
+                    Feel free to reach out at djevan11@gmail.com
+                </p>
                 </div>
             </div>
             
