@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Jekyll Bootstrap</title>
+ <link href="http://danieljohnevans.github.io/" rel="self"/>
+ <link href="http://danieljohnevans.github.io"/>
+ <updated>2015-04-19T23:11:31-04:00</updated>
+ <id>http://danieljohnevans.github.io</id>
+ <author>
+   <name>Daniel John Evans</name>
+   <email>blah@email.test</email>
+ </author>
+
+ 
+ <entry>
+   <title>A Year in Review</title>
+   <link href="http://danieljohnevans.github.io/about/2015/01/02/books-in-review"/>
+   <updated>2015-01-02T12:09:50-05:00</updated>
+   <id>http://danieljohnevans.github.io/about/2015/01/02/books-in-review</id>
+   <content type="html">&lt;p&gt;I moved to Somerville from the North Shore in September. While I’m still working on the North Shore, my commute has invariably risen from a seemingly quick 30 minute car ride to a 1.5 to 2 hour subway-to-commuter-rail marathon.&lt;/p&gt;
+
+&lt;p&gt;I’ve started reading. A lot.&lt;/p&gt;
+
+&lt;p&gt;Since January 2014, I’ve read:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Bukowski, Charles 
+    Hot Water Music
+Carver, Raymond 
+    Cathedral
+    What We Talk About When We Talk About Love
+Dumas, Alexandre 
+    The Count of Monte Cristo
+Ellis, Bret Easton 
+    American Psycho
+Fariña, Richard 
+    Been Down So Long it Looks Like Up to Me
+Hajdu, David 
+    Positively 4th Street: The Lives and Times of Joan Baez, Bob Dylan, Mimi Baez Fariña, and Richard Fariña
+Hemingway, Ernest 
+    The Old Man and the Sea
+    The Sun Also Rises
+Ilgunas, Ken 
+    Walden on Wheels: On the Open Road from Debt to Freedom
+Johnson, Denis 
+    Tree of Smoke
+Kerouac, Jack 
+    Tristessa
+Lahiri, Jhumpa 
+    The Namesake
+Lampedusa, Giuseppe Tomasi di 
+    The Leopard
+McCarthy, Cormac 
+    Blood Meridian, or the Evening Redness in the West
+McMurtry, Larry 
+    Lonesome Dove
+Millard, Candice 
+    The River of Doubt: Theodore Roosevelt’s Darkest Journey
+    Destiny of the Republic: A Tale of Madness, Medicine and the Murder of a President
+Mitchell, Joseph 
+    Up in the Old Hotel
+Munro, Alice 
+    Dear Life: Stories
+    Runaway
+Piketty, Thomas 
+    Capital in the Twenty-First Century
+Salter, James 
+    A Sport and a Pastime
+Saunders, George 
+    Tenth of December
+    CivilWarLand in Bad Decline
+Tower, Wells 
+    Everything Ravaged, Everything Burned
+Wood, Pamela 
+    The Salt Book: Lobstering, Sea Moss Pudding, Stone Walls, Rum Running, Maple Syrup, Snowshoes, and Other Yankee Doings
+Zweig, Stefan 
+    Beware of Pity
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To be honest, I’ve read most of these books this fall. I loved Candice Millard’s writing style. I’ve recommended her to a few friends and even those who aren’t usually fans of popular history are really blown away by her captivating style. I was pleasantly surprised to see her interviewed on Ken Burns’ Roosevelts.&lt;/p&gt;
+
+&lt;p&gt;I feel that I should also note that I’ve gone on a bit of a short story kick. I literally could not put down Carver, Munro and Saunders.&lt;/p&gt;
+
+&lt;p&gt;Not recorded here are the countless times I spent picking up, and putting down, &lt;code&gt;Infinite Jest&lt;/code&gt;. I just can’t seem to commit to that book. I feel like I’ll pick it up and get into it only to read a review or receive a recommendation and drop it for something more approachable. There’s so many other things I’m dying to read. Maybe I’ll go on a media blackout in 2015 and just force myself through it.&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Welcome</title>
+   <link href="http://danieljohnevans.github.io/about/2015/01/01/welcome"/>
+   <updated>2015-01-01T12:09:50-05:00</updated>
+   <id>http://danieljohnevans.github.io/about/2015/01/01/welcome</id>
+   <content type="html">&lt;p&gt;This site has been in the making for awhile now. Actually it lived and died in Wordpress for a brief period last fall and is finally live via Jekyll.&lt;/p&gt;
+
+&lt;p&gt;I’m using this blog to record my thoughts and projects specifically as they relate to my explorations in digital history. I think it’ll be useful to have a place to write down my blunders and (hopefully) get feedback from the larger DH community.&lt;/p&gt;
+
+&lt;p&gt;All the best –&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ 
+</feed>
