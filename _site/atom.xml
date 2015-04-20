@@ -4,7 +4,7 @@
  <title>danieljohnevans</title>
  <link href="http://danieljohnevans.github.io/" rel="self"/>
  <link href="http://danieljohnevans.github.io"/>
- <updated>2015-04-20T15:01:19-04:00</updated>
+ <updated>2015-04-20T16:01:44-04:00</updated>
  <id>http://danieljohnevans.github.io</id>
  <author>
    <name></name>
@@ -87,9 +87,9 @@ Zweig, Stefan
  
  <entry>
    <title>Welcome</title>
-   <link href="http://danieljohnevans.github.io/about/2015/01/01/welcome"/>
+   <link href="http://danieljohnevans.github.io/about/dh/2015/01/01/welcome"/>
    <updated>2015-01-01T12:09:50-05:00</updated>
-   <id>http://danieljohnevans.github.io/about/2015/01/01/welcome</id>
+   <id>http://danieljohnevans.github.io/about/dh/2015/01/01/welcome</id>
    <content type="html">&lt;p&gt;This site has been in the making for awhile now. Actually it lived and died in Wordpress for a brief period last fall and is finally live via Jekyll.&lt;/p&gt;
 
 &lt;p&gt;I’m using this blog to record my thoughts and projects specifically as they relate to my explorations in digital history. I think it’ll be useful to have a place to write down my blunders and (hopefully) get feedback from the larger DH community.&lt;/p&gt;
