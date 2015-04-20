@@ -1,7 +1,7 @@
 
 http://danieljohnevans.github.io/archive.html
 http://danieljohnevans.github.io/atom.xml
-http://danieljohnevans.github.io/categories.html
+http://danieljohnevans.github.io/blog.html
 http://danieljohnevans.github.io/index.html
 http://danieljohnevans.github.io/pages.html
 http://danieljohnevans.github.io/rss.xml

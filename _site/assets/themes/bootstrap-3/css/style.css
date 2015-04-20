@@ -104,6 +104,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+h3 {
+  padding-top: 35px;
+}
+
 
 img {
   max-width: 100%;
@@ -124,5 +128,5 @@ ul {
 }
 
 a {
-  color: #999999;
+  color: #666666;
 }
