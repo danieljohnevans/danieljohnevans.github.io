@@ -1,23 +1,10 @@
 ---
 layout: page
-title: Home
-tagline: This is the homepage
+title: About
+tagline: Here you can find out about me
 ---
 <body>
 <div class="main">
-        <div class="page" id="main">                
-            <div class="content container-fluid">
-                <div class = "row">
-                    <div class="col-sm-2">
-                    </div>
-                    <div class="col-sm-8">
-                       <h1>This is where I'll place the text</h1> 
-                    </div>
-                    <div class="col-sm-2"></div>
-                </div>               
-            </div>
-        </div>           
-    </div>
     <div class="page" id="about">
         <div class="content container-fluid">
             <h2>about</h2>
