@@ -11,11 +11,11 @@ highlighter: pygments
 title : danieljohnevans
 tagline: Site Tagline
 author : Daniel John Evans
-  name : Daniel John Evans
-  email : blah@email.test
-  github : danieljohnevans
-  twitter : djohnevans
-  feedburner : nothing
+name : Daniel John Evans
+email : blah@email.test
+github : danieljohnevans
+twitter : djohnevans
+feedburner : nothing
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
