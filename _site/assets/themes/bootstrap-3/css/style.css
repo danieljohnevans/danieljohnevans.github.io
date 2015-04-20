@@ -84,12 +84,25 @@ body .navbar-brand {
   font-family: 'Allerta', sans-serif;
 }
 
+body .navbar-default .navbar-nav a {
+  font-weight: 1000;
+  color: #333333; 
+}
+
 body .navbar-default .navbar-nav .active a {
   font-weight: 1000;
-  color: #EEC856;
-  background: transparent;
+  color: #EEC856; 
   border-bottom: 2px solid #666666;
-  text-shadow: 500;
+  background: transparent;
+  text-shadow: none;
+}
+
+body .navbar-default .navbar-nav a:hover {
+  font-weight: 1000;
+  color: #EEC856; 
+  border-bottom: 2px solid #666666;
+  background: transparent;
+  text-shadow: none;
 }
 
 body {
@@ -98,6 +111,16 @@ body {
   position: relative;
 }
 
+body .navbar-default .navbar-toggle .icon-bar {
+  background-color: #666666;
+}
+
+@media only screen
+and (max-width: 768px) {
+body .navbar-collapse {
+  background-color: rgba(0, 0, 0, .2);
+  text-align: right ;}
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Allerta', sans-serif;
