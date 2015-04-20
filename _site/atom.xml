@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Jekyll Bootstrap</title>
+ <title>danieljohnevans</title>
  <link href="http://danieljohnevans.github.io/" rel="self"/>
  <link href="http://danieljohnevans.github.io"/>
- <updated>2015-04-19T23:11:31-04:00</updated>
+ <updated>2015-04-20T00:00:30-04:00</updated>
  <id>http://danieljohnevans.github.io</id>
  <author>
-   <name>Daniel John Evans</name>
-   <email>blah@email.test</email>
+   <name></name>
+   <email></email>
  </author>
 
  
