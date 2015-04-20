@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
-tagline: Here you can find out about me
+title: 
+tagline: 
 ---
 <body>
 <div class="main">
