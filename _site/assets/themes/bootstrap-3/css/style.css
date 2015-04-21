@@ -91,7 +91,7 @@ body .navbar-default .navbar-nav a {
 
 body .navbar-default .navbar-nav .active a {
   font-weight: 1000;
-  color: #EEC856; 
+  color: #7FB17F; 
   border-bottom: 2px solid #666666;
   background: transparent;
   text-shadow: none;
@@ -99,7 +99,7 @@ body .navbar-default .navbar-nav .active a {
 
 body .navbar-default .navbar-nav a:hover {
   font-weight: 1000;
-  color: #EEC856; 
+  color: #7FB17F; 
   border-bottom: 2px solid #666666;
   background: transparent;
   text-shadow: none;
@@ -118,7 +118,7 @@ body .navbar-default .navbar-toggle .icon-bar {
 @media only screen
 and (max-width: 768px) {
 body .navbar-collapse {
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, .1);
   text-align: right ;}
 }
 
@@ -150,9 +150,9 @@ ul {
 }
 
 a {
-  color: #666666;
+  color: #A6A6A6;
 }
 
 a:hover {
-  color: #EEC856;
+  color: #7FB17F;
 }
