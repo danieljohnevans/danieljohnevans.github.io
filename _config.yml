@@ -74,7 +74,7 @@ JB :
   tags_path : /tags.html
   atom_path : /atom.xml
   rss_path : /rss.xml
-  source: app
+  source : /app/
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
@@ -93,7 +93,7 @@ JB :
       num_posts: 5
       width: 580
       colorscheme: light
-
+   
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.
   # Set 'provider' to false to turn analytics off globally.
@@ -107,7 +107,7 @@ JB :
     mixpanel :
         token : '_MIXPANEL_TOKEN_'
     piwik :
-        baseURL : '/name-of-github-project' # Piwik installation address (without protocol)
+        baseURL : 'myserver.tld/piwik' # Piwik installation address (without protocol)
         idsite : '1'                   # the id of the site on Piwik
 
   # Settings for sharing helper. 
@@ -117,8 +117,7 @@ JB :
   #
   sharing :
     provider : false
-
-
+    
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
   #
@@ -129,4 +128,4 @@ JB :
   # and include your custom code. Your custom file must be defined at:
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
-
+  
