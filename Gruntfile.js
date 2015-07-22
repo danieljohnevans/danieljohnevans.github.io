@@ -221,6 +221,16 @@ module.exports = function (grunt) {
         }]
       }
     },
+    buildcontrol: {
+      dist: {
+        options: {
+          remote: 'git@github.com:danieljohnevans/danieljohnevans.github.io.git',
+          branch: 'master',
+          commit: true,
+          push: true
+        }
+      }
+    },
     jshint: {
       options: {
         jshintrc: '.jshintrc',
