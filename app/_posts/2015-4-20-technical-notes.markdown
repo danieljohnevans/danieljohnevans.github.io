@@ -11,7 +11,7 @@ categories: about jekyll bootstrap
 
 <p> However, once I discovered <a href="http://jekyllbootstrap.com/">Jekyll Bootstrap</a> earlier this weekend, I knew I was sold on a framework. Jekyll Bootstrap allows an end user to quickly build out a blogging platform. It is lightweight, easy to deploy, fully customizable and, as an added bonus, hosts freely on Github. I've gotten a website off the ground within the past few days. </p>
 
-<p>Now I can focus on blogging rather than maintaining a website.</p>
+<p>Now I can focus on blogging rather than maintaining a website. Hopefully.</p>
 
 <p>stay tuned.</p>
 </body>
