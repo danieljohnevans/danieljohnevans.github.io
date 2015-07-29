@@ -5,9 +5,9 @@ date:   2015-07-28 17:09:50
 categories: about NNV R
 ---
 <body>
-<p>It's been a busy summer so you'll have to bear with me here if this post runs a bit long. </p>
+It's been a busy summer so you'll have to bear with me here if this post runs a bit long.
 
-<p>I'm fortunate enough to have some professional contact with <a href= "www.twitter.com/mollyhardy">Molly Hardy</a>, the Digital Humanities Curator at the American Antiquarian Society, and expressed interest in working with some of the AAS' vast holdings. She in turn graciously introduced me to the New Nation Votes datasets and provided insight into their history, depth, and limitations.</p> 
+I'm fortunate enough to have some professional contact with [Molly Hardy](www.twitter.com/mollyhardy), the Digital Humanities Curator at the American Antiquarian Society, and expressed interest in working with some of the AAS' vast holdings. She in turn graciously introduced me to the New Nation Votes datasets and provided insight into their history, depth, and limitations.
 
 <p>Although, I'm by no means a scholar of early US history, I was captivated. <a href= "http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar">Phil Lampi </a> has devoted the better part of his life to this dataset and his diligent work in cataloguing and organizing the collection. The AAS is in the process of producing an amazing set of voting records that provides a unique insight into the history of the Early Republic. While I'm lucky to be playing with this data, it really deserves a much deeper dive than I can provide. </p>
 
