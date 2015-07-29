@@ -116,6 +116,9 @@ JB :
   #
   sharing :
     provider : false
+
+# Initializes a Markdown parser
+  markdown = Redcarpet::Markdown.new(renderer, extensions = {no_fenced_code_blocks, highlight})
     
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
