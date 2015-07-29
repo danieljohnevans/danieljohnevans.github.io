@@ -131,19 +131,11 @@ theme_minimal()
 ```
 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
-![NE MAP RAW](/assets/Rplot_raw.png ={
-    max-width: 75%;
-    height: auto;
-    width: auto\9; /* ie8 */
-})
+![NE MAP RAW](/assets/Rplot_raw.png)
 
 Most likely this is not what you were hoping to see. I've never plotted anything in R and got it right my first time. That being said, the changing names of US towns have been difficult for me to georectify. In many ways, I've chosen to limit my scope to New England and New York due to this problem. I think working with a smaller data set initally and expanding my scope from there will help to isolate many of the issues I'm facing. Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the errors on the map above are places like `Denmark, Massachusetts` which became `Denmark, Maine` a few years later. However, variations in spelling requires further manual checks. `Chili, New York` verses `Chile, New York` registers as two different locations for Google's API. Finally, I'm struggling with towns simply no longer existing. Take for example `Phillipe, New York` which, according to the master file is located in Dutchess County. It appears that it was a part of the [Philipse Patent](https://en.wikipedia.org/wiki/Philipse_Patent) and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into [Fishkill, New York](http://www.putnamcountyny.com/countyhistorian/boundary-changes/) after the Revolutionary War and I've georectified to make up for the loss. 
 
 That being said, the going is slow. We're currently looking at a cleaner data set that plots out to:
-![NE MAP Cleaner](/assets/Rplot_clean.png ={
-    max-width: 75%;
-    height: auto;
-    width: auto\9; /* ie8 */
-}))
+![NE MAP Cleaner](/assets/Rplot_clean.png)
 
 I'm about halfway through the list and hope to finish by the end of the summer. That being said, it'd be great to receive feedback on any part of this process so please feel free to reach out.
