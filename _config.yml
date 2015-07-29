@@ -121,7 +121,7 @@ JB :
   markdown = Redcarpet:
   Redcarpet:
     extensions:
-      ["no_fenced_code_blocks", "tables", "footnotes", "highlight", "smart"]
+      ["hard_wrap", "no_fenced_code_blocks", "tables", "footnotes", "highlight", "smart"]
     
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
