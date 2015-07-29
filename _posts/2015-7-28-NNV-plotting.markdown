@@ -14,7 +14,7 @@ For example, I've struggled with changing town names and had to limit my scope t
 
 I approached this project with the goal of emulating the work that has been done with other GIS programs by both graduate and undergraduate students at WPI. Keeping that in mind, I originally hoped to plot the points using ArcGIS (primarily because it is free) and intended to port them over to angular/d3.js for a nice visualization. 
 
-Luckily, I stumbled upon Lincoln Mullen's amazing resource [Digital History Methods in R](http://lincolnmullen.com/projects/dh-r/). If you're looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. My favorite part about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I've been using his  [`USAboundaries`](https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf) library to map historic county lines. 
+Luckily, I stumbled upon Lincoln Mullen's amazing resource [Digital History Methods in R](http://lincolnmullen.com/projects/dh-r/). If you're looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. My favorite part about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I've been using his  [USAboundaries](https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf) library to map historic county lines. 
 
 To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [downloaded](http://dl.tufts.edu/election_datasets) the specific files I wanted to work with -- in this case ME, NH, VT, MA, RI, CT, and NY. I placed each of those files in a folder. 
 
@@ -22,13 +22,13 @@ To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [d
 I used the following packages in this exercise:
 
 ```
-library(ggmap)  
-library(dplyr)  
-library(tidyr)  
-library(rgdal)  
-library(ggplot2)  
-library(USAboundaries)  
-library(stringr)  
+library(ggmap)   
+library(dplyr)   
+library(tidyr)   
+library(rgdal)   
+library(ggplot2)   
+library(USAboundaries)    
+library(stringr)    
 ```
 
 
