@@ -21,7 +21,7 @@ To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [d
  
 I used the following packages in this exercise:
 
-'''python
+```python
 library(ggmap)
 library(dplyr)
 library(tidyr)
@@ -29,7 +29,7 @@ library(rgdal)
 library(ggplot2)
 library(USAboundaries)
 library(stringr)
-'''
+```
 
 
 Please note that USAboundaries needs to be installed using [devtools](https://github.com/hadley/devtools) <a>, however, this is a fairly straightforward process and following the directions on the github should yield the desired results.
@@ -41,7 +41,7 @@ Please note that USAboundaries needs to be installed using [devtools](https://gi
 
 With all packages installed, we can begin reading data into R. First set the working directory to your folder with the NNV data and save it as wd. Next, list each file in the folder and read each file in with a 'tab' deliminating columns. Finally, combine each file based on column headings.
 
-'''python
+```python
 wd <- setwd("####")
 load_data <- function(path) { 
 files <- list.files( path = wd)
@@ -50,7 +50,7 @@ do.call(rbind, tables)
 }
 
 mapdata <- load_data(wd)
-'''
+```
 
 Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, I always perform 'head(mapdata)' or 'str(mapdata)' just to check my findings. With less clean data you may need to go back and edit a heading or falsely insert a column.
 
@@ -58,30 +58,30 @@ Because the column headings are consistent across each of our data sets, R has n
  Now that we have our masterfile read in (renamed to 'mapdata'), we need to isolate the unique towns and cities and begin geocoding. To do this we first need to concatinate our town column and state column. This way we'll avoid confusing Google; rather than looking up 'Mexico' and ending up with the 'lat' and 'lon' of Mexico City, we'll specify 'Mexico, Maine' and hopefully get somewhere in Maine.
 
 
-'''python
+```python
 towns <- str_c(mapdata$Town, mapdata$State, sep= ", ")
-'''
+```
 
 Typing 'towns' will give you a list of every town and state within the master file. This is too much. We only want the unique town names. 
 
-'''python
+```python
 allT <- (str_trim(unique(sort(towns), stringsAsFactors=FALSE)))
-'''
+```
 
 'allT' will give us a sorted list. Now we are getting somewhere and are almost ready to begin geocoding. However, closely looking at the list reveals that the first nine variables are false entries. Removing those will give us a clean data set to work with:
 
-'''python
+```python
 allTowns <- allT[9:2372]
-'''
+```
 
 With that, the fun begins. Lincoln Mullen's textbook provides an excellent introduction to incorporating Google's geocoding API into R using the 'ggmap' package and I make use of this as well. The free version of this service limits you to 2500 downloads a day. In order to work with the API you must first convert your vector to a data frame. This will allow you to give it an index and ultimately append coordinates to it. Once converted to a data frame, we'll geocode the data. Please note that this will take some time so go make a cup of coffee. After all data is geocoded, we then bind both data frames together and rename it to 'allLocations' 
 
-'''python
+```python
 firstTowns <- data.frame (towns = c (allTowns),stringsAsFactors = FALSE)
 geocodedTowns <- geocode(firstTowns$towns)
 firstTowns <- cbind(firstTowns, geocodedTowns)
 allLocations <- firstTowns
-'''
+```
 
 Done? If you're feeling lazy, I've provided a messy data set on my [github](https://github.com/danieljohnevans/NNV-Geocoding). This is for every town, city and location. Please feel free to fork, update, etc. I will be beyond elated if I receive any interest in collaboration or receive any contributions!
 
@@ -93,7 +93,7 @@ I've also provided a cleaner data set for the New England and NY data set we're 
 
 Still with me? For those of you playing along at home, we have a quick bit of column renaming to do before we can plot out points. This will help us out further on down the road when we merge our data back with the masterfile 'mapdata'. Additionally, we'll want to merge our 'allLocations' data frame back to our 'mapdata' master file so that we'll be easily able to call on those files later. Finally, if you haven't already, now would be a great time to write out your various files to .CSVs in the event of a computer or program crash you don't want to wait through all of that geocoding again do you?
 
-'''python
+```python
 ##write.csv(firstTowns, file= "####")
 
 ##merge allLocations to mapdata
@@ -113,7 +113,7 @@ str(mapdata_merged)
 
 ## Writes master file:
 ##write.csv(mapdata_merged, file= "####")
-'''
+```
 
 ---
 
@@ -121,7 +121,7 @@ str(mapdata_merged)
 
 Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it's finally time to see how things look on a map. A quick note on plotting, the CRAN package 'ggplot2' is the most efficient charting tool in R. Charts and graphs in R are finicky. The best thing to do is to keep working at it. I really can't recommend anything other than to just keep grinding away at them. In the case of maps, I'll recommend taking a look at Lincoln Mullen's write up on GIS maps. My code is below:
 
-'''python
+```python
 USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire", 
 "New York", "Rhode Island", "Vermont")  
 map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
@@ -135,7 +135,7 @@ usMap +
     geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") +
     theme(legend.position = "bottom" ) +
     theme_minimal()
-'''
+```
 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
 ![NE MAP RAW](../assets/Rplot_raw.png)
