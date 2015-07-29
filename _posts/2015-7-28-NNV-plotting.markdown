@@ -94,9 +94,7 @@ I've also provided a cleaner data set for the New England and NY data set we're 
 Still with me? For those of you playing along at home, we have a quick bit of column renaming to do before we can plot out points. This will help us out further on down the road when we merge our data back with the masterfile 'mapdata'. Additionally, we'll want to merge our `allLocations` data frame back to our mapdata master file so that we'll be easily able to call on those files later. Finally, if you haven't already, now would be a great time to write out your various files to .CSVs in the event of a computer or program crash you don't want to wait through all of that geocoding again do you?
 
 ```
-##write.csv(firstTowns, file= "####")
-
-##merge allLocations to mapdata
+write.csv(firstTowns, file= "")
 
 str(mapdata)
 mapdata <- mutate(mapdata, 
@@ -111,8 +109,7 @@ str(allLocations)
 mapdata_merged <- left_join(mapdata, allLocations, by = c("location" = "location"))
 str(mapdata_merged)
 
-## Writes master file:
-##write.csv(mapdata_merged, file= "####")
+write.csv(mapdata_merged, file= "")
 ```
 
 ---
@@ -122,27 +119,27 @@ str(mapdata_merged)
 Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it's finally time to see how things look on a map. A quick note on plotting, the CRAN package `ggplot2` is the most efficient charting tool in R. Charts and graphs in R are finicky. The best thing to do is to keep working at it. I really can't recommend anything other than to just keep grinding away at them. In the case of maps, I'll recommend taking a look at Lincoln Mullen's write up on GIS maps. My code is below:
 
 ```
-USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire", 
-"New York", "Rhode Island", "Vermont")  
+USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire",
+"New York", "Rhode Island", "Vermont")
 map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
 usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group))
 usMap +
-    ggtitle("County Boundaries on March 15, 1825") +
-    geom_text(data = allLocations, aes(x = lon, y = lat, label = location), 
-        color="gray",
-        vjust = -1,
-        size = 4) +
-    geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") +
-    theme(legend.position = "bottom" ) +
-    theme_minimal()
+ggtitle("County Boundaries on March 15, 1825") +
+geom_text(data = allLocations, aes(x = lon, y = lat, label = location), 
+color="gray",
+vjust = -1,
+size = 4) +
+geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") +
+theme(legend.position = "bottom" ) +
+theme_minimal()
 ```
 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
-![NE MAP RAW](../assets/Rplot_raw.png)
+![NE MAP RAW](/assets/Rplot_raw.png)
 
 Most likely this is not what you were hoping to see. I've never plotted anything in R and got it right my first time. That being said, the changing names of US towns have been difficult for me to georectify. In many ways, I've chosen to limit my scope to New England and New York due to this problem. I think working with a smaller data set initally and expanding my scope from there will help to isolate many of the issues I'm facing. Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the errors on the map above are places like `Denmark, Massachusetts` which became `Denmark, Maine` a few years later. However, variations in spelling requires further manual checks. `Chili, New York` verses `Chile, New York` registers as two different locations for Google's API. Finally, I'm struggling with towns simply no longer existing. Take for example `Phillipe, New York` which, according to the master file is located in Dutchess County. It appears that it was a part of the [Philipse Patent](https://en.wikipedia.org/wiki/Philipse_Patent) and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into [Fishkill, New York](http://www.putnamcountyny.com/countyhistorian/boundary-changes/) after the Revolutionary War and I've georectified to make up for the loss. 
 
 That being said, the going is slow. We're currently looking at a cleaner data set that plots out to:
-![NE MAP Cleaner](../assets/Rplot_clean.png)
+![NE MAP Cleaner](/assets/Rplot_clean.png)
 
 I'm about halfway through the list and hope to finish by the end of the summer. Feel free to reach out!
