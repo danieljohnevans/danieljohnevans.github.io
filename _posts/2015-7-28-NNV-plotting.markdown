@@ -95,20 +95,16 @@ Still with me? For those of you playing along at home, we have a quick bit of co
 
 ```
 write.csv(firstTowns, file= "")
-
 str(mapdata)
 mapdata <- mutate(mapdata, 
     location = str_c(mapdata$Town, mapdata$City))
 mapdata <-  mutate(mapdata, 
     location = str_c(mapdata$location, mapdata$State, sep= ", "))
-
 str(allLocations)
 names(allLocations) <- c("x", "location", "lon", "lat")
 str(allLocations)
-
 mapdata_merged <- left_join(mapdata, allLocations, by = c("location" = "location"))
 str(mapdata_merged)
-
 write.csv(mapdata_merged, file= "")
 ```
 
@@ -119,19 +115,19 @@ write.csv(mapdata_merged, file= "")
 Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it's finally time to see how things look on a map. A quick note on plotting, the CRAN package `ggplot2` is the most efficient charting tool in R. Charts and graphs in R are finicky. The best thing to do is to keep working at it. I really can't recommend anything other than to just keep grinding away at them. In the case of maps, I'll recommend taking a look at Lincoln Mullen's write up on GIS maps. My code is below:
 
 ```
-USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire",
-"New York", "Rhode Island", "Vermont")
-map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
-usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group))
-usMap +
-ggtitle("County Boundaries on March 15, 1825") +
-geom_text(data = allLocations, aes(x = lon, y = lat, label = location), 
-color="gray",
-vjust = -1,
-size = 4) +
-geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") +
-theme(legend.position = "bottom" ) +
-theme_minimal()
+USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire", <br />
+"New York", "Rhode Island", "Vermont") <br />
+map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA) <br />
+usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) <br />
+usMap + <br />
+    ggtitle("County Boundaries on March 15, 1825") + <br />
+    geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  <br />
+        color="gray", <br />
+        vjust = -1, <br />
+        size = 4) + <br />
+    geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") + <br />
+    theme(legend.position = "bottom" ) + <br />
+    theme_minimal() <br />
 ```
 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
