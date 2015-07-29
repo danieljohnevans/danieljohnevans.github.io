@@ -117,17 +117,17 @@ Now that your coordinates are saved, you can easily import them at your leisure 
 ```
 USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire",  
 "New York", "Rhode Island", "Vermont")  
-map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)  <br>
-usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) /s/s
+map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
+usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) 
 usMap + 
-    ggtitle("County Boundaries on March 15, 1825") + 
-    geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  
-        color="gray", 
-        vjust = -1, 
-        size = 4) + 
-    geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") + 
-    theme(legend.position = "bottom" ) + 
-    theme_minimal() 
+ggtitle("County Boundaries on March 15, 1825") + 
+geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  
+color="gray", 
+vjust = -1, 
+size = 4) + 
+geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") + 
+theme(legend.position = "bottom" ) + 
+theme_minimal() 
 ```
 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
