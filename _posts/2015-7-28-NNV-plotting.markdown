@@ -22,13 +22,13 @@ To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [d
 I used the following packages in this exercise:
 
 ```
-library(ggmap)
-library(dplyr)
-library(tidyr)
-library(rgdal)
-library(ggplot2)
-library(USAboundaries)
-library(stringr)
+library(ggmap)  
+library(dplyr)  
+library(tidyr)  
+library(rgdal)  
+library(ggplot2)  
+library(USAboundaries)  
+library(stringr)  
 ```
 
 
