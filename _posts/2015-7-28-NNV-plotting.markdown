@@ -2,7 +2,7 @@
 layout: post
 title:  "A New Nation Votes"
 date:   2015-07-28 17:09:50
-categories: about NNV R
+categories: about NNV R Node
 ---
 It's been a busy summer so you'll have to bear with me here if this post runs a bit long. 
 
@@ -52,8 +52,7 @@ With all packages installed, we can begin reading data into R. First set the wor
 
     mapdata <- load_data(wd)
 
-Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, I always perform 'head(mapdata)' or 'str(mapdata)' just to check my findings. With less clean data you may need to go back and edit a heading or falsely insert a column.
-
+Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, it helps to perform 'head(mapdata)' or 'str(mapdata)' just to check double and triple check your work. With less clean data you may need to go back and edit a heading or falsely insert a column.
 
  Now that we have our masterfile read in (renamed to 'mapdata'), we need to isolate the unique towns and cities and begin geocoding. To do this we first need to concatinate our town column and state column. This way we'll avoid confusing Google; rather than looking up `Mexico` and ending up with the latitude and longitude of Mexico City, we'll specify `Mexico, Maine` and hopefully get somewhere in Maine.
 
@@ -74,15 +73,16 @@ With that, the fun begins. Lincoln Mullen's textbook provides an excellent intro
     firstTowns <- cbind(firstTowns, geocodedTowns)
     allLocations <- firstTowns
 
-Done? If you're feeling lazy, I've provided a messy data set on my [github](https://github.com/danieljohnevans/NNV-Geocoding). This is for every town, city and location. Please feel free to fork, update, etc. I will be beyond elated if I receive any interest in collaboration or receive any contributions!
+If you're feeling lazy, I've provided a messy data set on my [github](https://github.com/danieljohnevans/NNV-Geocoding). This is for every town, city and location. Please feel free to fork, update, etc. I will be beyond elated if I receive any interest in collaboration or contributions.
 
-I've also provided a cleaner data set for the New England and NY data set we're currently working with [here](https://github.com/danieljohnevans/NNV-Geocoding).
+I've also provided a cleaner data set for the New England and NY data set we're currently working with there as well.
 
 ---
 
 <h2>Merging</h2>
 
-Still with me? For those of you playing along at home, we have a quick bit of column renaming to do before we can plot out points. This will help us out further on down the road when we merge our data back with the masterfile 'mapdata'. Additionally, we'll want to merge our `allLocations` data frame back to our mapdata master file so that we'll be easily able to call on those files later. Finally, if you haven't already, now would be a great time to write out your various files to .CSVs in the event of a computer or program crash you don't want to wait through all of that geocoding again do you?
+
+Still with me? For those of you playing along at home, we have a quick bit of column renaming to do before we can plot out points. This will help us out further on down the road when we merge our data back with the masterfile 'mapdata'. Additionally, we'll want to merge our `allLocations` data frame back to our mapdata master file so that we'll be easily able to call on those files later. Finally, if you haven't already, now would be a great time to write out your various files to .CSVs in the event of a computer or program crash.
 
     write.csv(firstTowns, file= "your/file/here")
     str(mapdata)
@@ -107,7 +107,8 @@ Still with me? For those of you playing along at home, we have a quick bit of co
 
 <h2>Mapping</h2>
 
-Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it's finally time to see how things look on a map. A quick note on plotting, the CRAN package `ggplot2` is the most efficient charting tool in R. Charts and graphs in R are finicky. The best thing to do is to keep working at it. I really can't recommend anything other than to just keep grinding away at them. In the case of maps, I'll recommend taking a look at Lincoln Mullen's write up on GIS maps. My code is below:
+
+Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it's finally time to see how things look on a map. A quick note on plotting, the CRAN package `ggplot2` is the most efficient charting tool in R. Charts and graphs in R are finicky. I really can't recommend anything other than to just keep grinding away at them. In the case of maps, I recommend taking a look at Lincoln Mullen's write up on GIS maps. My code is below:
 
 
     USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire",  
@@ -128,16 +129,32 @@ Now that your coordinates are saved, you can easily import them at your leisure 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
 ![NE MAP RAW](/assets/Rplot_raw.png){: .center-image .responsive-image }    
 
-Most likely this is not what you were hoping to see. I've never plotted anything in R and got it right my first time. That being said, the changing names of US towns have been difficult for me to georectify. In many ways, I've chosen to limit my scope to New England and New York due to this problem. I think working with a smaller data set initally and expanding my scope from there will help to isolate many of the issues I'm facing. Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the errors on the map above are places like `Denmark, Massachusetts` which became `Denmark, Maine` a few years later. However, variations in spelling requires further manual checks. `Chili, New York` verses `Chile, New York` registers as two different locations for Google's API. Finally, I'm struggling with towns simply no longer existing. Take for example `Phillipe, New York` which, according to the master file is located in Dutchess County. It appears that it was a part of the [Philipse Patent](https://en.wikipedia.org/wiki/Philipse_Patent) and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into [Fishkill, New York](http://www.putnamcountyny.com/countyhistorian/boundary-changes/) after the Revolutionary War and I've georectified to make up for the loss. 
+Most likely this is not what you were hoping to see. I've never plotted anything in R and got it right my first time. In this case the changing and variable names of US towns are the problem. Admittedly, the data cleanup and georectification part of this process is taking longer than expected. In many ways, I've chosen to limit my scope to New England and New York due to the overwhelming number of towns in a NNV. I think working with a smaller data set initally and expanding my scope outward after deployment will help to isolate many of the issues I'm facing. 
 
-That being said, the going is slow. We're currently looking at a cleaner data set that plots out to:
+Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the initial errors on the map above can be blamed on Google maps getting confused by places like `Denmark, Massachusetts`. Instead it should be looking for `Denmark, Maine`. 
+
+Spelling variations pose another problem. These anomolies are more difficult for me to find and are oftentimes only discovered via manual checks. An obvious example of this is `Chili, New York` verses `Chile, New York`. This registers as two radically different locations for Google's API. However, sometimes Google will plot a variable in another county or state and this isn't immediately apparent.
+
+Finally, I'm struggling with towns simply disappearing from the historical record. Take for example `Phillipe, New York` which, according to the master file is located in Dutchess County. It appears that it was a part of the [Philipse Patent](https://en.wikipedia.org/wiki/Philipse_Patent) and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into [Fishkill, New York](http://www.putnamcountyny.com/countyhistorian/boundary-changes/) after the Revolutionary War and I've georectified to make up for the loss. 
+
+These investigations take time and the going is slow. A few miscellaneous notes:
+
+*For whatever reason, CT and RI seem to have relatively static names. I've made few, if any, georectifications due to name changes or spelling variations.
+*Most of my time is devoted to trying to figure out Upstate NY's complicated village system. This information has been difficult to find. 
+*This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.
+
+My current iteration plots out to:
 ![NE MAP Cleaner](/assets/Rplot_clean.png){: .center-image .responsive-image }  
 
+---
 
-I'm about halfway through the list and hope to finish by the end of the summer. My ultimate goal is to reintroduce these georectified locations into the original NNV dataset and plot historic voting records by town and county on an angular/d3 website. I'd like to then compare those numbers against US Census records to examine voter turnout per town per election. That being said, it'd be great to receive feedback on any part of this process so please feel free to reach out.
+<h2>Conclusions<h2>
 
-The complete code used in this project can be found [here](_________)
 
-A quick note about the backend here - I've been playing around with node.js. Earlier this summer, I redployed this site under the yeoman-jekyllrb framework but have since reverted to my jekyll bootstrap framework. As a task runner, Grunt.js is giving me more problems than it's solving. Every time I try to deploy using it, I receive a litany of error messages. I know I'll return to this in the coming weeks but my initial thought is that the problem may be in grunt and I may need to look at gulp.js instead. 
+I'm about a third through the list and hope to finish by the end of the summer. My ultimate goal is to reintroduce these georectified locations into the original NNV dataset and plot historic voting records by town and county on an angular/d3 website. I'd like to then compare those numbers against US Census records to examine voter turnout per town per election. I'll pull the OCR for this data using tesseract as I haven't yet seen an API that documents town level census data back that far. That being said, it'd be great to receive feedback on any part of this process so please feel free to reach out.
+
+The complete code used in this project can be found [here](https://github.com/danieljohnevans/electionsNE).
+
+A quick note about the backend of this site - I've been playing around with node.js. Earlier this summer, I redployed this site under the yeoman-jekyllrb framework but have since reverted to my jekyll bootstrap framework. As a task runner, Grunt.js is giving me more problems than it's solving. Every time I try to deploy using it, I receive a litany of error messages. I know I'll return to this in the coming weeks but my initial thought is that the problem may be in grunt and I may need to look at gulp.js instead. 
 
 More soon.
