@@ -148,8 +148,7 @@ My current iteration plots out to:
 
 ---
 
-<h2>Conclusions<h2>
-
+<h2>Conclusions</h2>
 
 I'm about a third through the list and hope to finish by the end of the summer. My ultimate goal is to reintroduce these georectified locations into the original NNV dataset and plot historic voting records by town and county on an angular/d3 website. I'd like to then compare those numbers against US Census records to examine voter turnout per town per election. I'll pull the OCR for this data using tesseract as I haven't yet seen an API that documents town level census data back that far. That being said, it'd be great to receive feedback on any part of this process so please feel free to reach out.
 
