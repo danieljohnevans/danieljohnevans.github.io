@@ -139,9 +139,9 @@ Finally, I'm struggling with towns simply disappearing from the historical recor
 
 These investigations take time and the going is slow. A few miscellaneous notes:
 
-<ul>For whatever reason, CT and RI seem to have relatively static names. I've made few, if any, georectifications due to name changes or spelling variations.
-<ul>Most of my time is devoted to trying to figure out Upstate NY's complicated village system. This information has been difficult to find. 
-<ul>This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.
+<ul>For whatever reason, CT and RI seem to have relatively static names. I've made few, if any, georectifications due to name changes or spelling variations.</ul>
+<ul>Most of my time is devoted to trying to figure out Upstate NY's complicated village system. This information has been difficult to find. </ul>
+<ul>This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.</ul>
 
 My current iteration plots out to:
 ![NE MAP Cleaner](/assets/Rplot_clean.png){: .center-image .responsive-image }  
