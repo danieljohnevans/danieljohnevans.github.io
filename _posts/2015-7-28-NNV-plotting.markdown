@@ -10,7 +10,7 @@ I'm fortunate enough to have some professional contact with [Molly Hardy](http:/
 
 A New Nation Votes project is coordinated by both the AAS and Tufts University through a grant from the National Endowment for the Humanities. The project seeks to capture and index voting records from 1787 to 1825. It is a mammoth undertaking.
 
-Although, I'm by no means a scholar of early US history, I was captivated. [Phil Lampi](http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar)has devoted the better part of his life to this dataset and his diligent work in cataloguing and organizing the collection. The AAS and Tufts in turn are in the process of producing an amazing set of voting records that provide a unique insight into the history of the Early Republic. While I'm lucky to be playing with this data, it really deserves a much deeper dive than I can provide.
+Although, I'm by no means a scholar of early US history, I was captivated. [Phil Lampi](http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar) has devoted the better part of his life to this dataset and his diligent work in cataloguing and organizing the collection. The AAS and Tufts in turn are in the process of producing an amazing set of voting records that provide a unique insight into the history of the Early Republic. While I'm lucky to be playing with this data, it really deserves a much deeper dive than I can provide.
 
 For example, I'm struggling with changing town names and had to limit my scope to New England and New York.  More on that in a moment. First let's talk about how I did what I did.
 
