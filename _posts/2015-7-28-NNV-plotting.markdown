@@ -10,13 +10,13 @@ I'm fortunate enough to have some professional contact with [Molly Hardy](http:/
 
 A New Nation Votes project is coordinated by both the AAS and Tufts University through a grant from the National Endowment for the Humanities. The project seeks to capture and index voting records from 1787 to 1825. It is a mammoth undertaking.
 
-Although, I'm by no means a scholar of early US history, I was captivated. [Phil Lampi](http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar) has devoted the better part of his life to this dataset and his diligent work in cataloguing and organizing the collection. The AAS and Tufts in turn are in the process of producing an amazing set of voting records that provide a unique insight into the history of the Early Republic. While I'm lucky to be playing with this data, it really deserves a much deeper dive than I can provide.
+Although, I'm by no means a scholar of early US history, I was captivated. [Phil Lampi](http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar) has devoted the better part of his life to diligently cataloguing and organizing this collection. The AAS and Tufts in turn are in the process of producing an amazing set of voting records that provide a unique insight into the history of the Early Republic. While I'm lucky to be playing with this data, it really deserves a much deeper dive than I can provide.
 
 For example, I'm struggling with changing town names and had to limit my scope to New England and New York.  More on that in a moment. First let's talk about how I did what I did.
 
 I approached this project with the goal of emulating the work that has been done with other GIS programs by both graduate and undergraduate students at WPI. Keeping that in mind, I originally hoped to plot county level geographic data points using ArcGIS (primarily because it is free) and intended to port them over to angular/d3.js for a nice visualization. 
 
-Luckily, I stumbled upon Lincoln Mullen's amazing resource [*Digital History Methods in R*](http://lincolnmullen.com/projects/dh-r/). If you're looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. My favorite part about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I've been using his  [USAboundaries](https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf) library to map historic county lines. 
+Luckily, I stumbled upon Lincoln Mullen's amazing resource [*Digital History Methods in R*](http://lincolnmullen.com/projects/dh-r/). If you're looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. One of my favorite things about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I've been using his  [USAboundaries](https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf) library to map historic county lines. 
 
 To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [downloaded](http://dl.tufts.edu/election_datasets) the specific files I wanted to work with -- in this case ME, NH, VT, MA, RI, CT, and NY. I placed each of those files in a folder. 
 
@@ -52,7 +52,7 @@ With all packages installed, we can begin reading data into R. First set the wor
 
     mapdata <- load_data(wd)
 
-Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, it helps to perform 'head(mapdata)' or 'str(mapdata)' just to check double and triple check your work. With less clean data you may need to go back and edit a heading or falsely insert a column.
+Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, it helps to perform 'head(mapdata)' or 'str(mapdata)' to check double and triple check your work. With less clean data you may need to go back and edit a heading or falsely insert a column.
 
  Now that we have our masterfile read in (renamed to 'mapdata'), we need to isolate the unique towns and cities and begin geocoding. To do this we first need to concatinate our town column and state column. This way we'll avoid confusing Google; rather than looking up `Mexico` and ending up with the latitude and longitude of Mexico City, we'll specify `Mexico, Maine` and hopefully get somewhere in Maine.
 
@@ -139,9 +139,9 @@ Finally, I'm struggling with towns simply disappearing from the historical recor
 
 These investigations take time and the going is slow. A few miscellaneous notes:
 
-*For whatever reason, CT and RI seem to have relatively static names. I've made few, if any, georectifications due to name changes or spelling variations.
-*Most of my time is devoted to trying to figure out Upstate NY's complicated village system. This information has been difficult to find. 
-*This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.
+<ul>For whatever reason, CT and RI seem to have relatively static names. I've made few, if any, georectifications due to name changes or spelling variations.
+<ul>Most of my time is devoted to trying to figure out Upstate NY's complicated village system. This information has been difficult to find. 
+<ul>This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.
 
 My current iteration plots out to:
 ![NE MAP Cleaner](/assets/Rplot_clean.png){: .center-image .responsive-image }  
