@@ -10,7 +10,7 @@ It was recently featured on EBSCO's marketing page. In the post, I broadly speak
 
 [Check it out here.](https://www.ebsco.com/blog/article/ebsco-and-digital-humanities-data-and-text-mining)
 
-Because the images are small on the blog, I've included a zoomed in version of New England below: 
+Because the images are small on the blog, I've included a higher quality version of Massachusetts below: 
 
 ![NE MAP](/assets/aas_MA.png){: .center-image .responsive-image } 
 
