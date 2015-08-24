@@ -12,6 +12,6 @@ It was recently featured on EBSCO's marketing page. In the post, I broadly speak
 
 Because the images are small on the blog, I've included a zoomed in version of New England below: 
 
-![NE MAP RAW](/assets/aas_MA.png){: .center-image .responsive-image } 
+![NE MAP RAW](/assets/themes/aas_MA.png){: .center-image .responsive-image } 
 
 Please feel free to reach out if you'd like a larger copy of the entire United States or would like a bit more background regarding the social network analysis.
