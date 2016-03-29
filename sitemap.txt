@@ -1,13 +1,8 @@
-
-http://danieljohnevans.github.io/about.html
-http://danieljohnevans.github.io/archive.html
-http://danieljohnevans.github.io/atom.xml
-http://danieljohnevans.github.io/blog.html
-http://danieljohnevans.github.io/categories.html
-http://danieljohnevans.github.io/index.html
-http://danieljohnevans.github.io/rss.xml
-http://danieljohnevans.github.io/sitemap.txt
-
-http://danieljohnevans.github.io/about/jekyll/bootstrap/2015/04/20/technical-notes
-http://danieljohnevans.github.io/about/2015/01/02/books-in-review
-http://danieljohnevans.github.io/about/dh/2015/01/01/welcome
+---
+# Remember to set production_url in your _config.yml file!
+title : Sitemap
+---
+{% for page in site.pages %}
+{{site.production_url}}{{ page.url }}{% endfor %}
+{% for post in site.posts %}
+{{site.production_url}}{{ post.url }}{% endfor %}

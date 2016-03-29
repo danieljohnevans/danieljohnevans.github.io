@@ -156,3 +156,10 @@ a {
 a:hover {
   color: #7FB17F;
 }
+
+.center-image
+{
+    margin: 0 auto;
+    display: block;
+    size: 75%;
+}
