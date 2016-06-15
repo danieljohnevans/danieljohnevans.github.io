@@ -150,9 +150,16 @@ ul {
 }
 
 a {
-  color: #A6A6A6;
+  color: #666666;
 }
 
 a:hover {
   color: #7FB17F;
+}
+
+.center-image
+{
+    margin: 0 auto;
+    display: block;
+    size: 75%;
 }

@@ -14,6 +14,7 @@ categories: about jekyll bootstrap
 <p>Now I can focus on blogging rather than maintaining a website.</p>
 
 <p>stay tuned.</p>
+
 </body>
  
 

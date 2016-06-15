@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>A New Nation Votes</title>
+    
+    <meta name="author" content="">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> <!-- font awesome -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">danieljohnevans</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about">About</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        
+<div class="page-header">
+  <h1>A New Nation Votes </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>28 July 2015</span>
+    </div>
+    <div class="content">
+      <p>It’s been a busy summer so you’ll have to bear with me here if this post runs a bit long.</p>
+
+<p>I’m fortunate enough to have some professional contact with <a href="http://www.twitter.com/mollyhardy">Molly Hardy</a>, the Digital Humanities Curator at the American Antiquarian Society, and expressed interest in working with some of the AAS’ vast holdings. She in turn graciously introduced me to a New Nation Votes datasets and provided insight into their history, depth, and limitations.</p>
+
+<p>A New Nation Votes project is coordinated by both the AAS and Tufts University through a grant from the National Endowment for the Humanities. The project seeks to capture and index voting records from 1787 to 1825. It is a mammoth undertaking.</p>
+
+<p>Although, I’m by no means a scholar of early US history, I was captivated. <a href="http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar">Phil Lampi</a> has devoted the better part of his life to diligently cataloguing and organizing this collection. The AAS and Tufts in turn are in the process of producing an amazing set of voting records that provide a unique insight into the history of the Early Republic. While I’m lucky to be playing with this data, it really deserves a much deeper dive than I can provide.</p>
+
+<p>For example, I’m struggling with changing town names and had to limit my scope to New England and New York.  More on that in a moment. First let’s talk about how I did what I did.</p>
+
+<p>I approached this project with the goal of emulating the work that has been done with other GIS programs by both graduate and undergraduate students at WPI. Keeping that in mind, I originally hoped to plot county level geographic data points using ArcGIS (primarily because it is free) and intended to port them over to angular/d3.js for a nice visualization.</p>
+
+<p>Luckily, I stumbled upon Lincoln Mullen’s amazing resource <a href="http://lincolnmullen.com/projects/dh-r/"><em>Digital History Methods in R</em></a>. If you’re looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. One of my favorite things about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I’ve been using his  <a href="https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf">USAboundaries</a> library to map historic county lines.</p>
+
+<p>To begin I headed over to the <a href="http://elections.lib.tufts.edu/">NNV site</a> and <a href="http://dl.tufts.edu/election_datasets">downloaded</a> the specific files I wanted to work with – in this case ME, NH, VT, MA, RI, CT, and NY. I placed each of those files in a folder.</p>
+
+<p>I used the following packages in this exercise:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>library(ggmap)   
+library(dplyr)   
+library(tidyr)   
+library(rgdal)   
+library(ggplot2)   
+library(USAboundaries)    
+library(stringr)    
+</code></pre>
+</div>
+
+<p>Please note that USAboundaries needs to be installed using <a href="https://github.com/hadley/devtools">devtools</a>, however, this is a fairly straightforward process and following the directions on the github should yield the desired results.</p>
+
+<hr />
+
+<h2>Cleaning and Geocoding</h2>
+
+<p>With all packages installed, we can begin reading data into R. First set the working directory to your folder with the NNV data and save it as wd. Next, list each file in the folder and read each file in with a ‘tab’ deliminating columns. Finally, combine each file based on column headings.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>wd &lt;- setwd("####")
+load_data &lt;- function(path) { 
+    files &lt;- list.files( path = wd)
+    tables &lt;- lapply(files, read.csv, sep = "\t")
+    do.call(rbind, tables)
+}
+
+mapdata &lt;- load_data(wd)
+</code></pre>
+</div>
+
+<p>Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, it helps to perform ‘head(mapdata)’ or ‘str(mapdata)’ to check double and triple check your work. With less clean data you may need to go back and edit a heading or falsely insert a column.</p>
+
+<p>Now that we have our masterfile read in (renamed to ‘mapdata’), we need to isolate the unique towns and cities and begin geocoding. To do this we first need to concatinate our town column and state column. This way we’ll avoid confusing Google; rather than looking up <code class="highlighter-rouge">Mexico</code> and ending up with the latitude and longitude of Mexico City, we’ll specify <code class="highlighter-rouge">Mexico, Maine</code> and hopefully get somewhere in Maine.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>towns &lt;- str_c(mapdata$Town, mapdata$State, sep= ", ")
+</code></pre>
+</div>
+
+<p>Typing <code class="highlighter-rouge">towns</code> into the R command line will give you a list of every town and state within the master file. This is too much. We only want the unique town names.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>allT &lt;- (str_trim(unique(sort(towns), stringsAsFactors=FALSE)))
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">allT</code> will give us a sorted list. Now we are getting somewhere and are almost ready to begin geocoding. However, closely looking at the list reveals that the first nine variables are false entries. Removing those will give us a clean data set to work with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>allTowns &lt;- allT[9:2372]
+</code></pre>
+</div>
+
+<p>With that, the fun begins. Lincoln Mullen’s textbook provides an excellent introduction to incorporating Google’s geocoding API into R using the <code class="highlighter-rouge">ggmap</code> package and I make use of this as well. The free version of this service limits you to 2500 downloads a day. In order to work with the API you must first convert your vector to a data frame. This will allow you to give it an index and ultimately append coordinates to it. Once converted to a data frame, we’ll geocode the data. Please note that this will take some time so go make a cup of coffee. After all data is geocoded, we then bind both data frames together and rename it to <code class="highlighter-rouge">allLocations</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>firstTowns &lt;- data.frame (towns = c (allTowns),stringsAsFactors = FALSE)
+geocodedTowns &lt;- geocode(firstTowns$towns)
+firstTowns &lt;- cbind(firstTowns, geocodedTowns)
+allLocations &lt;- firstTowns
+</code></pre>
+</div>
+
+<p>If you’re feeling lazy, I’ve provided a messy data set on my <a href="https://github.com/danieljohnevans/NNV-Geocoding">github</a>. This is for every town, city and location. Please feel free to fork, update, etc. I will be beyond elated if I receive any interest in collaboration or contributions.</p>
+
+<p>I’ve also provided a cleaner data set for the New England and NY data set we’re currently working with there as well.</p>
+
+<hr />
+
+<h2>Merging</h2>
+
+<p>Still with me? For those of you playing along at home, we have a quick bit of column renaming to do before we can plot out points. This will help us out further on down the road when we merge our data back with the masterfile ‘mapdata’. Additionally, we’ll want to merge our <code class="highlighter-rouge">allLocations</code> data frame back to our mapdata master file so that we’ll be easily able to call on those files later. Finally, if you haven’t already, now would be a great time to write out your various files to .CSVs in the event of a computer or program crash.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>write.csv(firstTowns, file= "your/file/here")
+str(mapdata)
+
+##merge allLocations to mapdata
+mapdata &lt;- mutate(mapdata, 
+    location = str_c(mapdata$Town, mapdata$City))
+mapdata &lt;-  mutate(mapdata, 
+    location = str_c(mapdata$location, mapdata$State, sep= ", "))
+
+str(allLocations)
+names(allLocations) &lt;- c("x", "location", "lon", "lat")
+str(allLocations)
+
+mapdata_merged &lt;- left_join(mapdata, allLocations, by = c("location" = "location"))
+
+str(mapdata_merged)
+
+write.csv(mapdata_merged, file= "your/file/here")
+</code></pre>
+</div>
+
+<hr />
+
+<h2>Mapping</h2>
+
+<p>Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it’s finally time to see how things look on a map. A quick note on plotting, the CRAN package <code class="highlighter-rouge">ggplot2</code> is the most efficient charting tool in R. Charts and graphs in R are finicky. I really can’t recommend anything other than to just keep grinding away at them. In the case of maps, I recommend taking a look at Lincoln Mullen’s write up on GIS maps. My code is below:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>USA &lt;- c("Connecticut","Maine", "Massachusetts", "New Hampshire",  
+    "New York", "Rhode Island", "Vermont")  
+map &lt;- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
+usMap &lt;- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) 
+usMap + 
+    ggtitle("County Boundaries on March 15, 1825") + 
+    geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  
+    color="gray", 
+    vjust = -1, 
+    size = 4) + 
+    geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") + 
+    theme(legend.position = "bottom" ) + 
+    theme_minimal() 
+</code></pre>
+</div>
+
+<p>If you’ve followed along thus far, importing all packages and geocoding everything, this is what you’ll get:
+<img src="/assets/Rplot_raw.png" alt="NE MAP RAW" class="center-image responsive-image" /></p>
+
+<p>Most likely this is not what you were hoping to see. I’ve never plotted anything in R and got it right my first time. In this case the changing and variable names of US towns are the problem. Admittedly, the data cleanup and georectification part of this process is taking longer than expected. In many ways, I’ve chosen to limit my scope to New England and New York due to the overwhelming number of towns in a NNV. I think working with a smaller data set initally and expanding my scope outward after deployment will help to isolate many of the issues I’m facing.</p>
+
+<p>Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the initial errors on the map above can be blamed on Google maps getting confused by places like <code class="highlighter-rouge">Denmark, Massachusetts</code>. Instead it should be looking for <code class="highlighter-rouge">Denmark, Maine</code>.</p>
+
+<p>Spelling variations pose another problem. These anomolies are more difficult for me to find and are oftentimes only discovered via manual checks. An obvious example of this is <code class="highlighter-rouge">Chili, New York</code> verses <code class="highlighter-rouge">Chile, New York</code>. This registers as two radically different locations for Google’s API. However, sometimes Google will plot a variable in another county or state and this isn’t immediately apparent.</p>
+
+<p>Finally, I’m struggling with towns simply disappearing from the historical record. Take for example <code class="highlighter-rouge">Phillipe, New York</code> which, according to the master file is located in Dutchess County. It appears that it was a part of the <a href="https://en.wikipedia.org/wiki/Philipse_Patent">Philipse Patent</a> and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into <a href="http://www.putnamcountyny.com/countyhistorian/boundary-changes/">Fishkill, New York</a> after the Revolutionary War and I’ve georectified to make up for the loss.</p>
+
+<p>These investigations take time and the going is slow. A few miscellaneous notes:</p>
+
+<ul>For whatever reason, CT and RI seem to have relatively static names. I've made few, if any, georectifications due to name changes or spelling variations.</ul>
+<ul>Most of my time is devoted to trying to figure out Upstate NY's complicated village system. This information has been difficult to find. </ul>
+<ul>This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.</ul>
+
+<p>My current iteration plots out to:
+<img src="/assets/Rplot_clean.png" alt="NE MAP Cleaner" class="center-image responsive-image" /></p>
+
+<hr />
+
+<h2>Conclusions</h2>
+
+<p>I’m about a third through the list and hope to finish by the end of the summer. My ultimate goal is to reintroduce these georectified locations into the original NNV dataset and plot historic voting records by town and county on an angular/d3 website. I’d like to then compare those numbers against US Census records to examine voter turnout per town per election. I’ll pull the OCR for this data using tesseract as I haven’t yet seen an API that documents town level census data back that far. That being said, it’d be great to receive feedback on any part of this process so please feel free to reach out.</p>
+
+<p>The complete code used in this project can be found <a href="https://github.com/danieljohnevans/electionsNE">here</a>.</p>
+
+<p>A quick note about the backend of this site - I’ve been playing around with node.js. Earlier this summer, I redployed this site under the yeoman-jekyllrb framework but have since reverted to my jekyll bootstrap framework. As a task runner, Grunt.js is giving me more problems than it’s solving. Every time I try to deploy using it, I receive a litany of error messages. I know I’ll return to this in the coming weeks but my initial thought is that the problem may be in grunt and I may need to look at gulp.js instead.</p>
+
+<p>More soon.</p>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#about-ref">
+    		about <span>4</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#NNV-ref">
+    		NNV <span>1</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#R-ref">
+    		R <span>2</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#Node-ref">
+    		Node <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/r/dh/2015/06/23/professional-blogging" title="Professional Blogging">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next disabled"><a>Next &rarr;</a>
+    
+    </ul>
+    <hr>
+    
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+
+    <div id="footer">
+          <p>
+            <a href="https://www.twitter.com/djohnevans"><i class="fa fa-twitter fa-2x"></i></a>
+
+            <a href="https://github.com/danieljohnevans"><i class="fa fa-github-square fa-2x"></i></a>
+
+            <a href="https://instagram.com/yogurtdanimal"><i class="fa fa-instagram fa-2x"></i></a>
+
+            <a href="https://www.linkedin.com/in/danieljohnevans"><i class="fa fa-linkedin-square fa-2x"></i></a>   
+          </p>  
+          <p>
+            "One day I will find the right words, and they will be simple."  - JK 
+          </p>
+          <p> 
+            &copy; 2016  with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a> and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a> 
+          </p> 
+          <p> 
+            <a href="http://creativecommons.org/licenses/by/3.0/">All content licensed under CC-BY.</a>
+           </p>    
+    </div>
+    
+
+
+
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-123-12']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+

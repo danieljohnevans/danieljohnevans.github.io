@@ -4,7 +4,7 @@
  <title>danieljohnevans</title>
  <link href="http://danieljohnevans.github.io/" rel="self"/>
  <link href="http://danieljohnevans.github.io"/>
- <updated>2015-04-20T20:01:57-04:00</updated>
+ <updated>2016-06-15T13:09:01-04:00</updated>
  <id>http://danieljohnevans.github.io</id>
  <author>
    <name></name>
@@ -13,20 +13,208 @@
 
  
  <entry>
+   <title>A New Nation Votes</title>
+   <link href="http://danieljohnevans.github.io/about/nnv/r/node/2015/07/28/NNV-plotting/"/>
+   <updated>2015-07-28T13:09:50-04:00</updated>
+   <id>http://danieljohnevans.github.io/about/nnv/r/node/2015/07/28/NNV-plotting</id>
+   <content type="html">&lt;p&gt;It’s been a busy summer so you’ll have to bear with me here if this post runs a bit long.&lt;/p&gt;
+
+&lt;p&gt;I’m fortunate enough to have some professional contact with &lt;a href=&quot;http://www.twitter.com/mollyhardy&quot;&gt;Molly Hardy&lt;/a&gt;, the Digital Humanities Curator at the American Antiquarian Society, and expressed interest in working with some of the AAS’ vast holdings. She in turn graciously introduced me to a New Nation Votes datasets and provided insight into their history, depth, and limitations.&lt;/p&gt;
+
+&lt;p&gt;A New Nation Votes project is coordinated by both the AAS and Tufts University through a grant from the National Endowment for the Humanities. The project seeks to capture and index voting records from 1787 to 1825. It is a mammoth undertaking.&lt;/p&gt;
+
+&lt;p&gt;Although, I’m by no means a scholar of early US history, I was captivated. &lt;a href=&quot;http://www.neh.gov/humanities/2008/januaryfebruary/feature/the-orphan-scholar&quot;&gt;Phil Lampi&lt;/a&gt; has devoted the better part of his life to diligently cataloguing and organizing this collection. The AAS and Tufts in turn are in the process of producing an amazing set of voting records that provide a unique insight into the history of the Early Republic. While I’m lucky to be playing with this data, it really deserves a much deeper dive than I can provide.&lt;/p&gt;
+
+&lt;p&gt;For example, I’m struggling with changing town names and had to limit my scope to New England and New York.  More on that in a moment. First let’s talk about how I did what I did.&lt;/p&gt;
+
+&lt;p&gt;I approached this project with the goal of emulating the work that has been done with other GIS programs by both graduate and undergraduate students at WPI. Keeping that in mind, I originally hoped to plot county level geographic data points using ArcGIS (primarily because it is free) and intended to port them over to angular/d3.js for a nice visualization.&lt;/p&gt;
+
+&lt;p&gt;Luckily, I stumbled upon Lincoln Mullen’s amazing resource &lt;a href=&quot;http://lincolnmullen.com/projects/dh-r/&quot;&gt;&lt;em&gt;Digital History Methods in R&lt;/em&gt;&lt;/a&gt;. If you’re looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. One of my favorite things about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I’ve been using his  &lt;a href=&quot;https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf&quot;&gt;USAboundaries&lt;/a&gt; library to map historic county lines.&lt;/p&gt;
+
+&lt;p&gt;To begin I headed over to the &lt;a href=&quot;http://elections.lib.tufts.edu/&quot;&gt;NNV site&lt;/a&gt; and &lt;a href=&quot;http://dl.tufts.edu/election_datasets&quot;&gt;downloaded&lt;/a&gt; the specific files I wanted to work with – in this case ME, NH, VT, MA, RI, CT, and NY. I placed each of those files in a folder.&lt;/p&gt;
+
+&lt;p&gt;I used the following packages in this exercise:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(ggmap)   
+library(dplyr)   
+library(tidyr)   
+library(rgdal)   
+library(ggplot2)   
+library(USAboundaries)    
+library(stringr)    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Please note that USAboundaries needs to be installed using &lt;a href=&quot;https://github.com/hadley/devtools&quot;&gt;devtools&lt;/a&gt;, however, this is a fairly straightforward process and following the directions on the github should yield the desired results.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2&gt;Cleaning and Geocoding&lt;/h2&gt;
+
+&lt;p&gt;With all packages installed, we can begin reading data into R. First set the working directory to your folder with the NNV data and save it as wd. Next, list each file in the folder and read each file in with a ‘tab’ deliminating columns. Finally, combine each file based on column headings.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wd &amp;lt;- setwd(&quot;####&quot;)
+load_data &amp;lt;- function(path) { 
+    files &amp;lt;- list.files( path = wd)
+    tables &amp;lt;- lapply(files, read.csv, sep = &quot;\t&quot;)
+    do.call(rbind, tables)
+}
+
+mapdata &amp;lt;- load_data(wd)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Because the column headings are consistent across each of our data sets, R has no problem combining them into one master file. That being said, it helps to perform ‘head(mapdata)’ or ‘str(mapdata)’ to check double and triple check your work. With less clean data you may need to go back and edit a heading or falsely insert a column.&lt;/p&gt;
+
+&lt;p&gt;Now that we have our masterfile read in (renamed to ‘mapdata’), we need to isolate the unique towns and cities and begin geocoding. To do this we first need to concatinate our town column and state column. This way we’ll avoid confusing Google; rather than looking up &lt;code class=&quot;highlighter-rouge&quot;&gt;Mexico&lt;/code&gt; and ending up with the latitude and longitude of Mexico City, we’ll specify &lt;code class=&quot;highlighter-rouge&quot;&gt;Mexico, Maine&lt;/code&gt; and hopefully get somewhere in Maine.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;towns &amp;lt;- str_c(mapdata$Town, mapdata$State, sep= &quot;, &quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Typing &lt;code class=&quot;highlighter-rouge&quot;&gt;towns&lt;/code&gt; into the R command line will give you a list of every town and state within the master file. This is too much. We only want the unique town names.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;allT &amp;lt;- (str_trim(unique(sort(towns), stringsAsFactors=FALSE)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;allT&lt;/code&gt; will give us a sorted list. Now we are getting somewhere and are almost ready to begin geocoding. However, closely looking at the list reveals that the first nine variables are false entries. Removing those will give us a clean data set to work with:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;allTowns &amp;lt;- allT[9:2372]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With that, the fun begins. Lincoln Mullen’s textbook provides an excellent introduction to incorporating Google’s geocoding API into R using the &lt;code class=&quot;highlighter-rouge&quot;&gt;ggmap&lt;/code&gt; package and I make use of this as well. The free version of this service limits you to 2500 downloads a day. In order to work with the API you must first convert your vector to a data frame. This will allow you to give it an index and ultimately append coordinates to it. Once converted to a data frame, we’ll geocode the data. Please note that this will take some time so go make a cup of coffee. After all data is geocoded, we then bind both data frames together and rename it to &lt;code class=&quot;highlighter-rouge&quot;&gt;allLocations&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;firstTowns &amp;lt;- data.frame (towns = c (allTowns),stringsAsFactors = FALSE)
+geocodedTowns &amp;lt;- geocode(firstTowns$towns)
+firstTowns &amp;lt;- cbind(firstTowns, geocodedTowns)
+allLocations &amp;lt;- firstTowns
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you’re feeling lazy, I’ve provided a messy data set on my &lt;a href=&quot;https://github.com/danieljohnevans/NNV-Geocoding&quot;&gt;github&lt;/a&gt;. This is for every town, city and location. Please feel free to fork, update, etc. I will be beyond elated if I receive any interest in collaboration or contributions.&lt;/p&gt;
+
+&lt;p&gt;I’ve also provided a cleaner data set for the New England and NY data set we’re currently working with there as well.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2&gt;Merging&lt;/h2&gt;
+
+&lt;p&gt;Still with me? For those of you playing along at home, we have a quick bit of column renaming to do before we can plot out points. This will help us out further on down the road when we merge our data back with the masterfile ‘mapdata’. Additionally, we’ll want to merge our &lt;code class=&quot;highlighter-rouge&quot;&gt;allLocations&lt;/code&gt; data frame back to our mapdata master file so that we’ll be easily able to call on those files later. Finally, if you haven’t already, now would be a great time to write out your various files to .CSVs in the event of a computer or program crash.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;write.csv(firstTowns, file= &quot;your/file/here&quot;)
+str(mapdata)
+
+##merge allLocations to mapdata
+mapdata &amp;lt;- mutate(mapdata, 
+    location = str_c(mapdata$Town, mapdata$City))
+mapdata &amp;lt;-  mutate(mapdata, 
+    location = str_c(mapdata$location, mapdata$State, sep= &quot;, &quot;))
+
+str(allLocations)
+names(allLocations) &amp;lt;- c(&quot;x&quot;, &quot;location&quot;, &quot;lon&quot;, &quot;lat&quot;)
+str(allLocations)
+
+mapdata_merged &amp;lt;- left_join(mapdata, allLocations, by = c(&quot;location&quot; = &quot;location&quot;))
+
+str(mapdata_merged)
+
+write.csv(mapdata_merged, file= &quot;your/file/here&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2&gt;Mapping&lt;/h2&gt;
+
+&lt;p&gt;Now that your coordinates are saved, you can easily import them at your leisure without going through the multitude of data munging steps. With that said, it’s finally time to see how things look on a map. A quick note on plotting, the CRAN package &lt;code class=&quot;highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; is the most efficient charting tool in R. Charts and graphs in R are finicky. I really can’t recommend anything other than to just keep grinding away at them. In the case of maps, I recommend taking a look at Lincoln Mullen’s write up on GIS maps. My code is below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;USA &amp;lt;- c(&quot;Connecticut&quot;,&quot;Maine&quot;, &quot;Massachusetts&quot;, &quot;New Hampshire&quot;,  
+    &quot;New York&quot;, &quot;Rhode Island&quot;, &quot;Vermont&quot;)  
+map &amp;lt;- us_boundaries(as.Date(&quot;1825-03-15&quot;), type = &quot;county&quot;, state = USA)
+usMap &amp;lt;- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) 
+usMap + 
+    ggtitle(&quot;County Boundaries on March 15, 1825&quot;) + 
+    geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  
+    color=&quot;gray&quot;, 
+    vjust = -1, 
+    size = 4) + 
+    geom_point(data = allLocations, aes(x = lon, y = lat), color= &quot;red&quot;) + 
+    theme(legend.position = &quot;bottom&quot; ) + 
+    theme_minimal() 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you’ve followed along thus far, importing all packages and geocoding everything, this is what you’ll get:
+&lt;img src=&quot;/assets/Rplot_raw.png&quot; alt=&quot;NE MAP RAW&quot; class=&quot;center-image responsive-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Most likely this is not what you were hoping to see. I’ve never plotted anything in R and got it right my first time. In this case the changing and variable names of US towns are the problem. Admittedly, the data cleanup and georectification part of this process is taking longer than expected. In many ways, I’ve chosen to limit my scope to New England and New York due to the overwhelming number of towns in a NNV. I think working with a smaller data set initally and expanding my scope outward after deployment will help to isolate many of the issues I’m facing.&lt;/p&gt;
+
+&lt;p&gt;Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the initial errors on the map above can be blamed on Google maps getting confused by places like &lt;code class=&quot;highlighter-rouge&quot;&gt;Denmark, Massachusetts&lt;/code&gt;. Instead it should be looking for &lt;code class=&quot;highlighter-rouge&quot;&gt;Denmark, Maine&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Spelling variations pose another problem. These anomolies are more difficult for me to find and are oftentimes only discovered via manual checks. An obvious example of this is &lt;code class=&quot;highlighter-rouge&quot;&gt;Chili, New York&lt;/code&gt; verses &lt;code class=&quot;highlighter-rouge&quot;&gt;Chile, New York&lt;/code&gt;. This registers as two radically different locations for Google’s API. However, sometimes Google will plot a variable in another county or state and this isn’t immediately apparent.&lt;/p&gt;
+
+&lt;p&gt;Finally, I’m struggling with towns simply disappearing from the historical record. Take for example &lt;code class=&quot;highlighter-rouge&quot;&gt;Phillipe, New York&lt;/code&gt; which, according to the master file is located in Dutchess County. It appears that it was a part of the &lt;a href=&quot;https://en.wikipedia.org/wiki/Philipse_Patent&quot;&gt;Philipse Patent&lt;/a&gt; and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into &lt;a href=&quot;http://www.putnamcountyny.com/countyhistorian/boundary-changes/&quot;&gt;Fishkill, New York&lt;/a&gt; after the Revolutionary War and I’ve georectified to make up for the loss.&lt;/p&gt;
+
+&lt;p&gt;These investigations take time and the going is slow. A few miscellaneous notes:&lt;/p&gt;
+
+&lt;ul&gt;For whatever reason, CT and RI seem to have relatively static names. I&#39;ve made few, if any, georectifications due to name changes or spelling variations.&lt;/ul&gt;
+&lt;ul&gt;Most of my time is devoted to trying to figure out Upstate NY&#39;s complicated village system. This information has been difficult to find. &lt;/ul&gt;
+&lt;ul&gt;This contrasts sharply with ME, NE and VT. They seem to have devoted historians/Wikipedians. Town name changes are diligently noted on Wikipedia pages or easily findable on the web.&lt;/ul&gt;
+
+&lt;p&gt;My current iteration plots out to:
+&lt;img src=&quot;/assets/Rplot_clean.png&quot; alt=&quot;NE MAP Cleaner&quot; class=&quot;center-image responsive-image&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2&gt;Conclusions&lt;/h2&gt;
+
+&lt;p&gt;I’m about a third through the list and hope to finish by the end of the summer. My ultimate goal is to reintroduce these georectified locations into the original NNV dataset and plot historic voting records by town and county on an angular/d3 website. I’d like to then compare those numbers against US Census records to examine voter turnout per town per election. I’ll pull the OCR for this data using tesseract as I haven’t yet seen an API that documents town level census data back that far. That being said, it’d be great to receive feedback on any part of this process so please feel free to reach out.&lt;/p&gt;
+
+&lt;p&gt;The complete code used in this project can be found &lt;a href=&quot;https://github.com/danieljohnevans/electionsNE&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A quick note about the backend of this site - I’ve been playing around with node.js. Earlier this summer, I redployed this site under the yeoman-jekyllrb framework but have since reverted to my jekyll bootstrap framework. As a task runner, Grunt.js is giving me more problems than it’s solving. Every time I try to deploy using it, I receive a litany of error messages. I know I’ll return to this in the coming weeks but my initial thought is that the problem may be in grunt and I may need to look at gulp.js instead.&lt;/p&gt;
+
+&lt;p&gt;More soon.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Professional Blogging</title>
+   <link href="http://danieljohnevans.github.io/r/dh/2015/06/23/professional-blogging/"/>
+   <updated>2015-06-23T13:09:50-04:00</updated>
+   <id>http://danieljohnevans.github.io/r/dh/2015/06/23/professional-blogging</id>
+   <content type="html">&lt;p&gt;Earlier this spring I worked with Wendy Woloson, an Assistant Professor of History at Rutgers Camden, to geocode and map the locations of EBSCO’s &lt;em&gt;American Antiquarian Society Periodicals Collections.&lt;/em&gt; She was preparing to give a presentation at the Research Society of American Periodicals conference in May of 2015. Those visualizations, in conjunction with a social network analysis markup I created last fall, became the foundation for a blog post I wrote earlier this month.&lt;/p&gt;
+
+&lt;p&gt;It was recently featured on EBSCO’s marketing page. In the post, I broadly speak about the digital humanities. I also touch upon some of text and data mining projects I’m currently working on.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ebsco.com/blog/article/ebsco-and-digital-humanities-data-and-text-mining&quot;&gt;Check it out here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Because the images are small on the blog, I’ve included a higher quality version of Massachusetts below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/aas_MA.png&quot; alt=&quot;NE MAP&quot; class=&quot;center-image responsive-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Please feel free to reach out if you’d like a larger copy of the entire United States or would like a bit more background regarding the social network analysis.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Technical Notes</title>
-   <link href="http://danieljohnevans.github.io/about/jekyll/bootstrap/2015/04/20/technical-notes"/>
+   <link href="http://danieljohnevans.github.io/about/jekyll/bootstrap/2015/04/20/technical-notes/"/>
    <updated>2015-04-20T13:09:50-04:00</updated>
    <id>http://danieljohnevans.github.io/about/jekyll/bootstrap/2015/04/20/technical-notes</id>
    <content type="html">&lt;body&gt;
-&lt;p&gt;So I feel that I should add a few technical notes to this blog now that this is off the ground. As alluded to in my first post a few months ago, this site has gone through a few iterations. It began with a Wordpress.org account. However, that was quickly abandoned as I realized that for my purposes the features of a full blown WAMP/MAMP environment weren&#39;t necessary.&lt;/p&gt;
+&lt;p&gt;So I feel that I should add a few technical notes to this blog now that this is off the ground. As alluded to in my first post a few months ago, this site has gone through a few different iterations. It began with a Wordpress.org account. However, that was quickly abandoned when I realized that for my purposes the features of a full blown WAMP/MAMP environment weren&#39;t necessary.&lt;/p&gt;
 
-&lt;p&gt;Instead, I needed something lighter, easier to maintain and, in my opinion, a lot more fun to customize. I had heard that Bootstrap provided many of those features. So while Boston slowly dug itself out earlier this year, I spent some time building out a single page site using the Bootstrap API. In fact, some of what you see on the &quot;about&quot; page comes from that exercise. &lt;/p&gt;
+&lt;p&gt;Instead I needed something lighter, easier to maintain and, in my opinion, a lot more fun to customize. I had heard that Bootstrap provided many of those features. So while Boston slowly dug itself out earlier this year, I spent some time building out a single page site using the Bootstrap API. In fact, some of what you see on the &quot;about&quot; page comes from that exercise. &lt;/p&gt;
 
 &lt;p&gt; However, once I discovered &lt;a href=&quot;http://jekyllbootstrap.com/&quot;&gt;Jekyll Bootstrap&lt;/a&gt; earlier this weekend, I knew I was sold on a framework. Jekyll Bootstrap allows an end user to quickly build out a blogging platform. It is lightweight, easy to deploy, fully customizable and, as an added bonus, hosts freely on Github. I&#39;ve gotten a website off the ground within the past few days. &lt;/p&gt;
 
 &lt;p&gt;Now I can focus on blogging rather than maintaining a website.&lt;/p&gt;
 
 &lt;p&gt;stay tuned.&lt;/p&gt;
+
 &lt;/body&gt;
 
 </content>
@@ -34,7 +222,7 @@
  
  <entry>
    <title>A Year in Review</title>
-   <link href="http://danieljohnevans.github.io/about/2015/01/02/books-in-review"/>
+   <link href="http://danieljohnevans.github.io/about/2015/01/02/books-in-review/"/>
    <updated>2015-01-02T12:09:50-05:00</updated>
    <id>http://danieljohnevans.github.io/about/2015/01/02/books-in-review</id>
    <content type="html">&lt;p&gt;I moved to Somerville from the North Shore in September. While I’m still working on the North Shore, my commute has invariably risen from a seemingly quick 30 minute car ride to a 1.5 to 2 hour subway-to-commuter-rail marathon.&lt;/p&gt;
@@ -206,14 +394,14 @@
 
 &lt;p&gt;I feel that I should also note that I’ve gone on a bit of a short story kick. I struggled to put down the works of Carver, Munro, and Saunders.&lt;/p&gt;
 
-&lt;p&gt;Not recorded here are the countless times I spent picking up, and putting down, &lt;code&gt;Infinite Jest&lt;/code&gt;. I just can’t seem to commit to that book. I feel like I’ll pick it up and get into it only to read a review or receive a recommendation and drop it for something more approachable. There’s so many other things I’m dying to read. Maybe I’ll go on a media blackout in 2015 and just force myself through it.&lt;/p&gt;
+&lt;p&gt;Not recorded here are the countless times I spent picking up, and putting down, &lt;code class=&quot;highlighter-rouge&quot;&gt;Infinite Jest&lt;/code&gt;. I just can’t seem to commit to that book. I feel like I’ll pick it up and get into it only to read a review or receive a recommendation and drop it for something more approachable. There’s so many other things I’m dying to read. Maybe I’ll go on a media blackout in 2015 and just force myself through it.&lt;/p&gt;
 
 </content>
  </entry>
  
  <entry>
    <title>Welcome</title>
-   <link href="http://danieljohnevans.github.io/about/dh/2015/01/01/welcome"/>
+   <link href="http://danieljohnevans.github.io/about/dh/2015/01/01/welcome/"/>
    <updated>2015-01-01T12:09:50-05:00</updated>
    <id>http://danieljohnevans.github.io/about/dh/2015/01/01/welcome</id>
    <content type="html">&lt;p&gt;This site has been in the making for awhile now. Actually it lived and died in Wordpress for a brief period last fall and is finally live via Jekyll.&lt;/p&gt;
