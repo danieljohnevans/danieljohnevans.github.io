@@ -2,11 +2,11 @@
 layout: post
 title:  "A New Nation Votes"
 date:   2015-07-28 17:09:50
-categories: about NNV R Node
+categories: about nnv r node
 ---
-It's been a busy summer so you'll have to bear with me here if this post runs a bit long. 
+It's been a busy summer so you'll have to bear with me here if this post runs a bit long.
 
-I'm fortunate enough to have some professional contact with [Molly Hardy](http://www.twitter.com/mollyhardy), the Digital Humanities Curator at the American Antiquarian Society, and expressed interest in working with some of the AAS' vast holdings. She in turn graciously introduced me to a New Nation Votes datasets and provided insight into their history, depth, and limitations. 
+I'm fortunate enough to have some professional contact with [Molly Hardy](http://www.twitter.com/mollyhardy), the Digital Humanities Curator at the American Antiquarian Society, and expressed interest in working with some of the AAS' vast holdings. She in turn graciously introduced me to a New Nation Votes datasets and provided insight into their history, depth, and limitations.
 
 A New Nation Votes project is coordinated by both the AAS and Tufts University through a grant from the National Endowment for the Humanities. The project seeks to capture and index voting records from 1787 to 1825. It is a mammoth undertaking.
 
@@ -14,13 +14,13 @@ Although, I'm by no means a scholar of early US history, I was captivated. [Phil
 
 For example, I'm struggling with changing town names and had to limit my scope to New England and New York.  More on that in a moment. First let's talk about how I did what I did.
 
-I approached this project with the goal of emulating the work that has been done with other GIS programs by both graduate and undergraduate students at WPI. Keeping that in mind, I originally hoped to plot county level geographic data points using ArcGIS (primarily because it is free) and intended to port them over to angular/d3.js for a nice visualization. 
+I approached this project with the goal of emulating the work that has been done with other GIS programs by both graduate and undergraduate students at WPI. Keeping that in mind, I originally hoped to plot county level geographic data points using ArcGIS (primarily because it is free) and intended to port them over to angular/d3.js for a nice visualization.
 
-Luckily, I stumbled upon Lincoln Mullen's amazing resource [*Digital History Methods in R*](http://lincolnmullen.com/projects/dh-r/). If you're looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. One of my favorite things about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I've been using his  [USAboundaries](https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf) library to map historic county lines. 
+Luckily, I stumbled upon Lincoln Mullen's amazing resource [*Digital History Methods in R*](http://lincolnmullen.com/projects/dh-r/). If you're looking for an introduction to R with a digital history/DH bent, I cannot recommend this book enough. I use R in my current position as an analyst and familiarized myself with the textual analyses CRAN packages last winter/spring so the progression to using R for its GIS capabilities was an easy transition. Prof. Mullen provides a strong foundation in using R including data manipulation, munging, and a great section on plotting. One of my favorite things about his book, however, is that he frames it all within the realm of history. Furthermore, his CRAN packages provide another strong resource for those looking for large, relatively clean historic datasets. I've been using his  [USAboundaries](https://cran.r-project.org/web/packages/USAboundaries/USAboundaries.pdf) library to map historic county lines.
 
-To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [downloaded](http://dl.tufts.edu/election_datasets) the specific files I wanted to work with -- in this case ME, NH, VT, MA, RI, CT, and NY. I placed each of those files in a folder. 
+To begin I headed over to the [NNV site](http://elections.lib.tufts.edu/) and [downloaded](http://dl.tufts.edu/election_datasets) the specific files I wanted to work with -- in this case ME, NH, VT, MA, RI, CT, and NY. I placed each of those files in a folder.
 
- 
+
 I used the following packages in this exercise:
 
 
@@ -44,7 +44,7 @@ With all packages installed, we can begin reading data into R. First set the wor
 
 
     wd <- setwd("####")
-    load_data <- function(path) { 
+    load_data <- function(path) {
         files <- list.files( path = wd)
         tables <- lapply(files, read.csv, sep = "\t")
         do.call(rbind, tables)
@@ -58,7 +58,7 @@ Because the column headings are consistent across each of our data sets, R has n
 
     towns <- str_c(mapdata$Town, mapdata$State, sep= ", ")
 
-Typing `towns` into the R command line will give you a list of every town and state within the master file. This is too much. We only want the unique town names. 
+Typing `towns` into the R command line will give you a list of every town and state within the master file. This is too much. We only want the unique town names.
 
     allT <- (str_trim(unique(sort(towns), stringsAsFactors=FALSE)))
 
@@ -66,7 +66,7 @@ Typing `towns` into the R command line will give you a list of every town and st
 
     allTowns <- allT[9:2372]
 
-With that, the fun begins. Lincoln Mullen's textbook provides an excellent introduction to incorporating Google's geocoding API into R using the `ggmap` package and I make use of this as well. The free version of this service limits you to 2500 downloads a day. In order to work with the API you must first convert your vector to a data frame. This will allow you to give it an index and ultimately append coordinates to it. Once converted to a data frame, we'll geocode the data. Please note that this will take some time so go make a cup of coffee. After all data is geocoded, we then bind both data frames together and rename it to `allLocations` 
+With that, the fun begins. Lincoln Mullen's textbook provides an excellent introduction to incorporating Google's geocoding API into R using the `ggmap` package and I make use of this as well. The free version of this service limits you to 2500 downloads a day. In order to work with the API you must first convert your vector to a data frame. This will allow you to give it an index and ultimately append coordinates to it. Once converted to a data frame, we'll geocode the data. Please note that this will take some time so go make a cup of coffee. After all data is geocoded, we then bind both data frames together and rename it to `allLocations`
 
     firstTowns <- data.frame (towns = c (allTowns),stringsAsFactors = FALSE)
     geocodedTowns <- geocode(firstTowns$towns)
@@ -88,9 +88,9 @@ Still with me? For those of you playing along at home, we have a quick bit of co
     str(mapdata)
 
     ##merge allLocations to mapdata
-    mapdata <- mutate(mapdata, 
+    mapdata <- mutate(mapdata,
         location = str_c(mapdata$Town, mapdata$City))
-    mapdata <-  mutate(mapdata, 
+    mapdata <-  mutate(mapdata,
         location = str_c(mapdata$location, mapdata$State, sep= ", "))
 
     str(allLocations)
@@ -114,28 +114,28 @@ Now that your coordinates are saved, you can easily import them at your leisure 
     USA <- c("Connecticut","Maine", "Massachusetts", "New Hampshire",  
         "New York", "Rhode Island", "Vermont")  
     map <- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
-    usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) 
-    usMap + 
-        ggtitle("County Boundaries on March 15, 1825") + 
+    usMap <- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group))
+    usMap +
+        ggtitle("County Boundaries on March 15, 1825") +
         geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  
-        color="gray", 
-        vjust = -1, 
-        size = 4) + 
-        geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") + 
-        theme(legend.position = "bottom" ) + 
-        theme_minimal() 
+        color="gray",
+        vjust = -1,
+        size = 4) +
+        geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") +
+        theme(legend.position = "bottom" ) +
+        theme_minimal()
 
 
 If you've followed along thus far, importing all packages and geocoding everything, this is what you'll get:
 ![NE MAP RAW](/assets/Rplot_raw.png){: .center-image .responsive-image }    
 
-Most likely this is not what you were hoping to see. I've never plotted anything in R and got it right my first time. In this case the changing and variable names of US towns are the problem. Admittedly, the data cleanup and georectification part of this process is taking longer than expected. In many ways, I've chosen to limit my scope to New England and New York due to the overwhelming number of towns in a NNV. I think working with a smaller data set initally and expanding my scope outward after deployment will help to isolate many of the issues I'm facing. 
+Most likely this is not what you were hoping to see. I've never plotted anything in R and got it right my first time. In this case the changing and variable names of US towns are the problem. Admittedly, the data cleanup and georectification part of this process is taking longer than expected. In many ways, I've chosen to limit my scope to New England and New York due to the overwhelming number of towns in a NNV. I think working with a smaller data set initally and expanding my scope outward after deployment will help to isolate many of the issues I'm facing.
 
-Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the initial errors on the map above can be blamed on Google maps getting confused by places like `Denmark, Massachusetts`. Instead it should be looking for `Denmark, Maine`. 
+Take for instance the MA/ME split in 1820. All Maine towns in the NNV data set rightfully fell under the jurisdiction of Massachusetts prior to 1820. Ergo, many of the initial errors on the map above can be blamed on Google maps getting confused by places like `Denmark, Massachusetts`. Instead it should be looking for `Denmark, Maine`.
 
 Spelling variations pose another problem. These anomolies are more difficult for me to find and are oftentimes only discovered via manual checks. An obvious example of this is `Chili, New York` verses `Chile, New York`. This registers as two radically different locations for Google's API. However, sometimes Google will plot a variable in another county or state and this isn't immediately apparent.
 
-Finally, I'm struggling with towns simply disappearing from the historical record. Take for example `Phillipe, New York` which, according to the master file is located in Dutchess County. It appears that it was a part of the [Philipse Patent](https://en.wikipedia.org/wiki/Philipse_Patent) and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into [Fishkill, New York](http://www.putnamcountyny.com/countyhistorian/boundary-changes/) after the Revolutionary War and I've georectified to make up for the loss. 
+Finally, I'm struggling with towns simply disappearing from the historical record. Take for example `Phillipe, New York` which, according to the master file is located in Dutchess County. It appears that it was a part of the [Philipse Patent](https://en.wikipedia.org/wiki/Philipse_Patent) and is probably a misspelling. What was once Philipse, Dutchess County, New York was incorporated into [Fishkill, New York](http://www.putnamcountyny.com/countyhistorian/boundary-changes/) after the Revolutionary War and I've georectified to make up for the loss.
 
 These investigations take time and the going is slow. A few miscellaneous notes:
 
@@ -154,6 +154,6 @@ I'm about a third through the list and hope to finish by the end of the summer. 
 
 The complete code used in this project can be found [here](https://github.com/danieljohnevans/electionsNE).
 
-A quick note about the backend of this site - I've been playing around with node.js. Earlier this summer, I redployed this site under the yeoman-jekyllrb framework but have since reverted to my jekyll bootstrap framework. As a task runner, Grunt.js is giving me more problems than it's solving. Every time I try to deploy using it, I receive a litany of error messages. I know I'll return to this in the coming weeks but my initial thought is that the problem may be in grunt and I may need to look at gulp.js instead. 
+A quick note about the backend of this site - I've been playing around with node.js. Earlier this summer, I redployed this site under the yeoman-jekyllrb framework but have since reverted to my jekyll bootstrap framework. As a task runner, Grunt.js is giving me more problems than it's solving. Every time I try to deploy using it, I receive a litany of error messages. I know I'll return to this in the coming weeks but my initial thought is that the problem may be in grunt and I may need to look at gulp.js instead.
 
 More soon.

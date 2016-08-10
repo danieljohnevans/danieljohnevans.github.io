@@ -23,7 +23,7 @@ Since January 2014, I’ve read:
     <tr>
         <td>1</td>
         <td>Bukowski, Charles </td>
-        <td><i>Hot Water Music</i></td> 
+        <td><i>Hot Water Music</i></td>
     </tr>
     <tr>
         <td>2</td>

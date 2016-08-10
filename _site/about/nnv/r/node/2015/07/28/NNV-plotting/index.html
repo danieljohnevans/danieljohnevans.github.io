@@ -158,7 +158,7 @@ library(stringr)
 <p>With all packages installed, we can begin reading data into R. First set the working directory to your folder with the NNV data and save it as wd. Next, list each file in the folder and read each file in with a ‘tab’ deliminating columns. Finally, combine each file based on column headings.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>wd &lt;- setwd("####")
-load_data &lt;- function(path) { 
+load_data &lt;- function(path) {
     files &lt;- list.files( path = wd)
     tables &lt;- lapply(files, read.csv, sep = "\t")
     do.call(rbind, tables)
@@ -211,9 +211,9 @@ allLocations &lt;- firstTowns
 str(mapdata)
 
 ##merge allLocations to mapdata
-mapdata &lt;- mutate(mapdata, 
+mapdata &lt;- mutate(mapdata,
     location = str_c(mapdata$Town, mapdata$City))
-mapdata &lt;-  mutate(mapdata, 
+mapdata &lt;-  mutate(mapdata,
     location = str_c(mapdata$location, mapdata$State, sep= ", "))
 
 str(allLocations)
@@ -237,16 +237,16 @@ write.csv(mapdata_merged, file= "your/file/here")
 <div class="highlighter-rouge"><pre class="highlight"><code>USA &lt;- c("Connecticut","Maine", "Massachusetts", "New Hampshire",  
     "New York", "Rhode Island", "Vermont")  
 map &lt;- us_boundaries(as.Date("1825-03-15"), type = "county", state = USA)
-usMap &lt;- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group)) 
-usMap + 
-    ggtitle("County Boundaries on March 15, 1825") + 
+usMap &lt;- ggplot() +  geom_polygon(data=map, aes(x=long, y=lat, group=group))
+usMap +
+    ggtitle("County Boundaries on March 15, 1825") +
     geom_text(data = allLocations, aes(x = lon, y = lat, label = location),  
-    color="gray", 
-    vjust = -1, 
-    size = 4) + 
-    geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") + 
-    theme(legend.position = "bottom" ) + 
-    theme_minimal() 
+    color="gray",
+    vjust = -1,
+    size = 4) +
+    geom_point(data = allLocations, aes(x = lon, y = lat), color= "red") +
+    theme(legend.position = "bottom" ) +
+    theme_minimal()
 </code></pre>
 </div>
 
@@ -294,19 +294,19 @@ usMap +
   
      
     	<li><a href="/categories.html#about-ref">
-    		about <span>4</span>
+    		about <span>5</span>
     	</a></li>
      
-    	<li><a href="/categories.html#NNV-ref">
-    		NNV <span>1</span>
+    	<li><a href="/categories.html#nnv-ref">
+    		nnv <span>1</span>
     	</a></li>
      
-    	<li><a href="/categories.html#R-ref">
-    		R <span>2</span>
+    	<li><a href="/categories.html#r-ref">
+    		r <span>2</span>
     	</a></li>
      
-    	<li><a href="/categories.html#Node-ref">
-    		Node <span>1</span>
+    	<li><a href="/categories.html#node-ref">
+    		node <span>1</span>
     	</a></li>
     
   
@@ -324,7 +324,7 @@ usMap +
     
       <li><a href="/archive.html">Archive</a></li>
     
-      <li class="next disabled"><a>Next &rarr;</a>
+      <li class="next"><a href="/about/reboot/2016/08/03/blog-reboot/" title="Blog Reboot">Next &raquo;</a></li>
     
     </ul>
     <hr>
