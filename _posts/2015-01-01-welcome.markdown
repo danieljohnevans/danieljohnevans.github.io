@@ -3,6 +3,7 @@ layout: post
 title:  "Welcome"
 date:   2015-01-01 17:09:50
 categories: about dh
+published: false
 ---
 This site has been in the making for awhile now. Actually it lived and died in Wordpress for a brief period last fall and is finally live via Jekyll.
 

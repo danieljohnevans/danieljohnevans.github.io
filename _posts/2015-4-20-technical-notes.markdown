@@ -3,6 +3,7 @@ layout: post
 title:  "Technical Notes"
 date:   2015-04-20 17:09:50
 categories: about jekyll bootstrap
+published: false
 ---
 <body>
 <p>So I feel that I should add a few technical notes to this blog now that this is off the ground. As alluded to in my first post a few months ago, this site has gone through a few different iterations. It began with a Wordpress.org account. However, that was quickly abandoned when I realized that for my purposes the features of a full blown WAMP/MAMP environment weren't necessary.</p>
@@ -16,7 +17,7 @@ categories: about jekyll bootstrap
 <p>stay tuned.</p>
 
 </body>
- 
+
 
 
 [jekyll]:      http://jekyllrb.com

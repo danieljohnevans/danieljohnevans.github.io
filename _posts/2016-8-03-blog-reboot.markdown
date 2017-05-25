@@ -3,6 +3,7 @@ layout: post
 title:  "Blog Reboot"
 date:   2016-08-03 17:09:50
 categories: about reboot
+published: false
 ---
 
 Hello again.

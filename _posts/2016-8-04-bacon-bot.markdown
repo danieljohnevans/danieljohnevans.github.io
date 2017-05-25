@@ -3,6 +3,7 @@ layout: post
 title:  "Early Modern Bots"
 date:   2016-08-04 17:09:50
 categories: sdfb bot
+published: false
 ---
 
 I started at CMU earlier this spring and since joining have been working with the creative minds of the [Six Degrees of Francis Bacon Project](http://www.sixdegreesoffrancisbacon.com/). These folks are mining names from the [Oxford Dictionary of National Biography](http://www.oxforddnb.com/) and creating an early modern social network. It's an amazing project. I recommend checking it out if you haven't already.

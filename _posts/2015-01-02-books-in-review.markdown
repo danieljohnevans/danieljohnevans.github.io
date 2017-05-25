@@ -3,6 +3,7 @@ layout: post
 title:  "A Year in Review"
 date:   2015-01-02 17:09:50
 categories: about
+published: false
 ---
 I moved to Somerville from the North Shore in September. While I’m still working on the North Shore, my commute has invariably risen from a seemingly quick 30 minute car ride to a 1.5 to 2 hour subway-to-commuter-rail marathon.
 
