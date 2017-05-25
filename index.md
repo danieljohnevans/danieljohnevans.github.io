@@ -59,6 +59,6 @@ tagline:
                             Node, Python, R, Ruby, SQL
                         </p>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
