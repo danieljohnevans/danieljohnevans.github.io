@@ -86,12 +86,12 @@ body .navbar-brand {
 
 body .navbar-default .navbar-nav a {
   font-weight: 1000;
-  color: #333333; 
+  color: #333333;
 }
 
 body .navbar-default .navbar-nav .active a {
   font-weight: 1000;
-  color: #7FB17F; 
+  color: #7FB17F;
   border-bottom: 2px solid #666666;
   background: transparent;
   text-shadow: none;
@@ -99,7 +99,7 @@ body .navbar-default .navbar-nav .active a {
 
 body .navbar-default .navbar-nav a:hover {
   font-weight: 1000;
-  color: #7FB17F; 
+  color: #7FB17F;
   border-bottom: 2px solid #666666;
   background: transparent;
   text-shadow: none;
@@ -162,4 +162,8 @@ a:hover {
     margin: 0 auto;
     display: block;
     size: 75%;
+}
+
+button.navbar-toggle {
+  display: none;
 }
