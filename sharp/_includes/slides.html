@@ -26,22 +26,22 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-    <link rel="stylesheet" href="{{ "/reveal.js-master/css/reveal.css" | prepend: site.baseurl }}"/>
+    <link rel="stylesheet" href="{{ "/sharp/css/reveal.css" | prepend: site.baseurl }}"/>
     {%if page.theme %}
-      <link rel="stylesheet" href="{{ "/reveal.js-master/css/theme/" | prepend: site.baseurl | append: page.theme | append: '.css' }}" id="theme"/>
+      <link rel="stylesheet" href="{{ "/sharp/css/theme/" | prepend: site.baseurl | append: page.theme | append: '.css' }}" id="theme"/>
     {% else %}
-      <link rel="stylesheet" href="{{ "/reveal.js-master/css/theme/black.css" | prepend: site.baseurl }}" id="theme"/>
+      <link rel="stylesheet" href="{{ "/sharp/css/theme/black.css" | prepend: site.baseurl }}" id="theme"/>
     {% endif %}
 
     <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="{{ "/reveal.js-master/lib/css/zenburn.css" | prepend: site.baseurl }}"/>
+    <link rel="stylesheet" href="{{ "/sharp/lib/css/zenburn.css" | prepend: site.baseurl }}"/>
 
     <!-- Printing and PDF exports -->
     <script>
       var link = document.createElement( 'link' );
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "/reveal.js-master/css/print/pdf.css" | prepend: site.baseurl }}' : '{{ "/reveal.js-master/css/print/paper.css" | prepend: site.baseurl }}';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "/sharp/css/print/pdf.css" | prepend: site.baseurl }}' : '{{ "/sharp/css/print/paper.css" | prepend: site.baseurl }}';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
 
@@ -62,11 +62,11 @@
       </div>
     </div>
 
-    <script src="{{ "/reveal.js-master/lib/js/head.min.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/reveal.js-master/js/reveal.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/sharp/lib/js/head.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/sharp/js/reveal.js" | prepend: site.baseurl }}"></script>
     <script>
       // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js-master#configuration
+      // https://github.com/hakimel/sharp#configuration
       Reveal.initialize({
         controls: true,
         progress: true,
@@ -77,14 +77,14 @@
         {% else %}
           transition: 'slide', // none/fade/slide/convex/concave/zoom
         {% endif %}
-        // Optional reveal.js-master plugins
+        // Optional sharp plugins
         dependencies: [
-          { src: '{{ "/reveal.js-master/lib/js/classList.js" | prepend: site.baseurl }}', condition: function() { return !document.body.classList; } },
-          { src: '{{ "/reveal.js-master/plugin/markdown/marked.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: '{{ "/reveal.js-master/plugin/markdown/markdown.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: '{{ "/reveal.js-master/plugin/highlight/highlight.js" | prepend: site.baseurl }}', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: '{{ "/reveal.js-master/plugin/zoom-js/zoom.js" | prepend: site.baseurl }}', async: true },
-          { src: '{{ "/reveal.js-master/plugin/notes/notes.js" | prepend: site.baseurl }}', async: true }
+          { src: '{{ "/sharp/lib/js/classList.js" | prepend: site.baseurl }}', condition: function() { return !document.body.classList; } },
+          { src: '{{ "/sharp/plugin/markdown/marked.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "/sharp/plugin/markdown/markdown.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "/sharp/plugin/highlight/highlight.js" | prepend: site.baseurl }}', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '{{ "/sharp/plugin/zoom-js/zoom.js" | prepend: site.baseurl }}', async: true },
+          { src: '{{ "/sharp/plugin/notes/notes.js" | prepend: site.baseurl }}', async: true }
         ]
       });
     </script>
