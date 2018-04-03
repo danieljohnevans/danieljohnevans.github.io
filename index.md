@@ -21,7 +21,8 @@ tagline:
                 </p>
 
                 <p>
-                    My goal is to get back into the habit of writing and I'm using this site to store my personal project notes.
+
+                    I'm interested in using natural language processing and machine learning to explore book history, digital archives, and the history of computing.
 
                 </p>
 
@@ -40,7 +41,7 @@ tagline:
             <h2>cv</h2>
             <div class="row">
                 <div class="col-sm-7">
-                    <h3>Selected Experience</h3>
+                    <h3>selected experience</h3>
                         <ul>
                             <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - Present</li>
                             <li>Product Management Analyst | EBSCO Information Services, 2014 - 2016</li>
@@ -50,15 +51,18 @@ tagline:
                         </ul>
                 </div>
                 <div class="col-sm-5">
-                    <h3>Education</h3>
+                    <h3>education</h3>
+                        <p>
+                            M.A. in Literary and Cultural Studies, <i>Carnegie Mellon University </i>, expected 2019
+                        </p>
                         <p>
                             B.A. in History with a concentration in Russian and Eastern European Studies, <i>College of the Holy Cross </i>, 2011, Phi Alpha Theta
                         </p>
                     <h3>I like to use</h3>
                         <p>
-                            Node, Python, R, Ruby, SQL
+                            Node, Python, R, SQL
                         </p>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
