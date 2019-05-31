@@ -43,7 +43,8 @@ tagline:
                 <div class="col-sm-7">
                     <h3>selected experience</h3>
                         <ul>
-                            <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - Present</li>
+                            <li>Research Fellow | Carnegie Mellon University, 2018 - 2019</li>
+                            <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - 2018</li>
                             <li>Product Management Analyst | EBSCO Information Services, 2014 - 2016</li>
                             <li>Assistant Database Editor | EBSCO Information Services, 2012 - 2014</li>
                             <li>Community Organizing Apprentice | AmeriCorps VISTA, 2012 - 2012</li>
@@ -53,7 +54,7 @@ tagline:
                 <div class="col-sm-5">
                     <h3>education</h3>
                         <p>
-                            M.A. in Literary and Cultural Studies, <i>Carnegie Mellon University </i>, expected 2019
+                            M.A. in Literary and Cultural Studies, <i>Carnegie Mellon University </i>, 2019
                         </p>
                         <p>
                             B.A. in History with a concentration in Russian and Eastern European Studies, <i>College of the Holy Cross </i>, 2011, Phi Alpha Theta
