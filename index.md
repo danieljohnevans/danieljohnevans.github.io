@@ -48,8 +48,6 @@ tagline:
                             <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - 2018</li>
                             <li>Product Management Analyst | EBSCO Information Services, 2014 - 2016</li>
                             <li>Assistant Database Editor | EBSCO Information Services, 2012 - 2014</li>
-                            <li>Community Organizing Apprentice | AmeriCorps VISTA, 2012 - 2012</li>
-                            <li>Snowboard Technician | Christy Sports, 2011 - 2012</li>
                         </ul>
                 </div>
                 <div class="col-sm-5">
