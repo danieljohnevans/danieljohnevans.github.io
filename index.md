@@ -43,7 +43,7 @@ tagline:
                 <div class="col-sm-7">
                     <h3>selected experience</h3>
                         <ul>
-                            <li>Site Reliability Engineer | MModal, 2019 - 2020</li>
+                            <li>Site Reliability Engineer | MModal, 2020 - Present</li>
                             <li>Software Engineer | JSTOR Labs, 2019 - 2020</li>
                             <li>Research Fellow | Carnegie Mellon University, 2018 - 2019</li>
                             <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - 2018</li>
@@ -54,10 +54,10 @@ tagline:
                 <div class="col-sm-5">
                     <h3>education</h3>
                         <p>
-                            M.A. in Literary and Cultural Studies, <i>Carnegie Mellon University </i>, 2019
+                            M.A. Literary and Cultural Studies, <i>Carnegie Mellon University </i>, 2019
                         </p>
                         <p>
-                            B.A. in History with a concentration in Russian and Eastern European Studies, <i>College of the Holy Cross </i>, 2011, Phi Alpha Theta
+                            B.A. History, <i>College of the Holy Cross </i>, 2011
                         </p>
                     <h3>I like to use</h3>
                         <p>
