@@ -43,7 +43,8 @@ tagline:
                 <div class="col-sm-7">
                     <h3>selected experience</h3>
                         <ul>
-                            <li>Software Engineer | JSTOR Labs, 2019 - Present</li>
+                            <li>Site Reliability Engineer | MModal, 2019 - 2020</li>
+                            <li>Software Engineer | JSTOR Labs, 2019 - 2020</li>
                             <li>Research Fellow | Carnegie Mellon University, 2018 - 2019</li>
                             <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - 2018</li>
                             <li>Product Management Analyst | EBSCO Information Services, 2014 - 2016</li>
