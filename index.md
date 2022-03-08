@@ -22,7 +22,7 @@ tagline:
 
                 <p>
 
-                    I'm interested in using natural language processing and machine learning to explore the history of the book, the history of computing, and digital archives.
+                    I'm interested in using natural language processing and machine learning to explore the history of the book, the history of computing, and digital archives. More recently, I've been interested in equity and access, information retrieval, and information behaviors.
 
                 </p>
 
@@ -38,12 +38,12 @@ tagline:
     </div>
     <div class="page" id="cv">
         <div class="content container">
-            <h2>cv</h2>
             <div class="row">
                 <div class="col-sm-7">
                     <h3>selected experience</h3>
                         <ul>
-                            <li>Site Reliability Engineer | MModal, 2020 - Present</li>
+                            <li>Research Assistant | HathiTrust Research Center, 2021 - Present</li>
+                            <li>Site Reliability Engineer | MModal, 2020 - 2021</li>
                             <li>Software Engineer | JSTOR Labs, 2019 - 2020</li>
                             <li>Research Fellow | Carnegie Mellon University, 2018 - 2019</li>
                             <li>Digital Humanities Developer | Carnegie Mellon University, 2016 - 2018</li>
@@ -53,6 +53,9 @@ tagline:
                 </div>
                 <div class="col-sm-5">
                     <h3>education</h3>
+                        <p>
+                            PhD Information Science, <i>University of Illinois, Urbana Champaign </i>, Expected 2026
+                        </p>
                         <p>
                             M.A. Literary and Cultural Studies, <i>Carnegie Mellon University </i>, 2019
                         </p>
