@@ -22,7 +22,7 @@ tagline:
 
                 <p>
 
-                    I'm interested in using natural language processing and machine learning to explore the history of the book, the history of computing, and digital archives. More recently, I've been interested in equity and access, information retrieval, and information behaviors.
+                    I'm interested in using natural language processing and machine learning to explore the history of the book, the history of computing, and digital archives. More recently, I've been interested in quesitons related to equity and access, information retrieval, and information behaviors.
 
                 </p>
 
